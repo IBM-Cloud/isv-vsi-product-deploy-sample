@@ -31,14 +31,14 @@ data "template_file" "user_data" {
 
 //security group
 resource "ibm_is_security_group" "vnf_security_group" {
-  name           = "${var.vnf_security_group}"
+  name           = var.vnf_security_group
   vpc            = "${data.ibm_is_subnet.vnf_subnet.vpc}"
   resource_group = "${data.ibm_is_subnet.vnf_subnet.resource_group}"
 }
 
 //security group rule to allow ssh
 resource "ibm_is_security_group_rule" "vnf_sg_allow_ssh" {
-  depends_on = ["ibm_is_security_group.vnf_security_group"]
+  depends_on = [ibm_is_security_group.vnf_security_group]
   group     = "${ibm_is_security_group.vnf_security_group.id}"
   direction = "inbound"
   remote     = "0.0.0.0/0"
