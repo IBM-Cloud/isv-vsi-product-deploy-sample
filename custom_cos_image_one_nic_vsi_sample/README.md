@@ -16,14 +16,6 @@ the methods described in _IBM COS getting started docs_ (https://test.cloud.ibm.
 custom image (https://cloud.ibm.com/docs/vpc?topic=vpc-managing-images) in the 
 customer account by the terraform script. It's recommended to delete the
 custom image after the VNF is created by terraform.
-- Copy the Ubuntu 18.04 qcow2 image to the COS bucket to install and create a VSI. Download the Ubuntu 18.04 vmdk image (bionic-server-cloudimg-amd64.vmdk) from https://cloud-images.ubuntu.com/bionic/current. Then convert it into qcow2 format using qemu application as per below command
-  - *qemu-img convert -O qcow2 <.vmdk file path> <.qcow2 file path>* (Example: qemu-img convert -O qcow2 ~/Downloads/bionic-server-cloudimg-amd64.vmdk bionic-server-cloudimg-amd64.qcow2)
-- Create a **READ ALL** permissions on the relevant bucket containing the qcow2
-image using the method provided here (https://cloud.ibm.com/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-public-access#public-access-object). Here is an example for us-south region using
-the IBM Cloud CLI (https://cloud.ibm.com/docs/cli?topic=cli-getting-started):
-
-  <pre><code>$ export token=`ibmcloud iam oauth-tokens | awk '{ print $4 }'`
-  $ curl -v -X "PUT" "https://s3.us-south.cloud-object-storage.appdomain.cloud/vendorbucketname/vendor.qcow2?acl" -H "Authorization: Bearer $token" -H "x-amz-acl: public-read"</code></pre>
 
 ## Costs
 
@@ -82,6 +74,6 @@ If there is any failure during VSI creation, the created resources must be destr
     - Click Three Dot Button corresponding to the Unbound IP address -> Click `Bind`
     - Select Ubuntu instance (eth0) from `Instance to bind` column.
     - After clicking `Bind`, you can see the IP address assigned to your Ubuntu-VSI Instance.
-3. From the CLI, run `ssh cloud-user@<Floating IP>`. 
+3. From the CLI, run `ssh root@<Floating IP>`. 
 4. Enter 'yes' for continue connecting using ssh your key. This is the ssh key value, you specified in ssh_key variable. 
 
