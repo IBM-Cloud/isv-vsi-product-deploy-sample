@@ -1,6 +1,6 @@
-# custom-cos-image-one-nic-vsi-sample
+# image_id_one_nic_vsi_sample
 
-This directory contains the sample terraform code to create a VSI Instance with custom image from a qcow2 image stored in the COS URL. 
+This directory contains the sample terraform code to create a VSI Instance with custom image id provided as input. 
 
 # IBM Cloud IaaS Support
 You're provided free technical support through the IBM Cloud™ community and Stack Overflow, which you can access from the Support Center. The level of support that you select determines the severity that you can assign to support cases and your level of access to the tools available in the Support Center. Choose a Basic, Advanced, or Premium support plan to customize your IBM Cloud™ support experience for your business needs.
@@ -51,9 +51,7 @@ Fill in the following values, based on the steps that you completed before you b
 | `generation` | The VPC Generation 1 (classic) or Generation 2 that you want your VPC virtual servers to be provisioned.  | 2  |
 | `region` | The VPC region that you want your VPC virtual servers to be provisioned. | us-south |
 | `ssh_key_name` | The name of your public SSH key to be used for VSI. Follow [Public SSH Key Doc](https://cloud.ibm.com/docs/vpc-on-classic-vsi?topic=vpc-on-classic-vsi-ssh-keys) for creating and managing ssh key. | linux-ssh-key |
-| `ssh_key` | The value of your public SSH key to be used for VSI. This ssh key is copied to authorized keys in cloud init script during VSI provision | "ssh-rsa " |
-| `vnf_cos_image_url` | This is the vendor COS image SQL URL where the image(qcow2 image) is located. This is to copy the image from COS to VPC custom image in your IBM Cloud account VPC Infrastructure. First time, the image needs to be copied to your VPC cloud account. | cos://us-south/vnf-bucket/bionic-server-cloudimg-amd64.qcow2 |
-| `vnf_vpc_image_name` | The starting name of the qcow2 Custom Image to be provisioned in your IBM Cloud account and (if already available) to be used to create the virtual server instance. The name is appended with UUID, to create a unique custom image for every run. | ubuntu18-04 |
+| `vnf_image_id` | The image id of the VSI to be provisioned in your IBM Cloud account. | r001-900-000-000 |
 | `vnf_profile` | The profile of compute CPU and memory resources to be used when provisioning the vnf instance. To list available profiles, run `ibmcloud is instance-profiles`. | bx2-2x8 |
 | `vnf_instance_name` | The name of the VNF instance to be provisioned. | ubuntu18-04-vsi |
 | `subnet_id` | The ID of the subnet which will be associated with first interface of the VNF instance. Click on the subnet details in the VPC Subnet Listing to determine this value | 0717-xxxxxx-xxxx-xxxxx-8fae-xxxxx |
