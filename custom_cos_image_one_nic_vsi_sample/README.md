@@ -82,6 +82,6 @@ If there is any failure during VSI creation, the created resources must be destr
     - Click Three Dot Button corresponding to the Unbound IP address -> Click `Bind`
     - Select Ubuntu instance (eth0) from `Instance to bind` column.
     - After clicking `Bind`, you can see the IP address assigned to your Ubuntu-VSI Instance.
-3. From the CLI, run `ssh root@<Floating IP>`. 
+3. From the CLI, run `ssh cloud-user@<Floating IP>`. 
 4. Enter 'yes' for continue connecting using ssh your key. This is the ssh key value, you specified in ssh_key variable. 
 
