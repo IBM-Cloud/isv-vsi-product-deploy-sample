@@ -7,8 +7,8 @@ The different scenarios for which the sample code are available are:
 
 | Scenario | Description | URL |
 |----------|-------------|-----|
-| custom_cos_image_one_nic_vsi_sample | Contains the sample terraform code to create a VNF Instance with a single network interface using a custom cos image. | https://github.com/IBM-Cloud/isv-vsi-product-deploy-sample/tree/master/custom_cos_image_one_nic_vsi_sample/ | 
-|catalog_img_id_one_nic_vsi_sample | Contains the sample terraform code to create a VNF Instance with a single network interface using a catalog image id as input. | https://github.com/IBM-Cloud/isv-vsi-product-deploy-sample/tree/master/image_id_one_nic_vsi_sample/  |
+| Using custom COS image one nic vsi | Contains the sample terraform code to create a VNF Instance with a single network interface using a custom cos image. | https://github.com/IBM-Cloud/isv-vsi-product-deploy-sample/tree/master/custom_cos_image_one_nic_vsi_sample/ | 
+| Using catalog image id one nic vsi | Contains the sample terraform code to create a VNF Instance with a single network interface using a catalog image id as input. | https://github.com/IBM-Cloud/isv-vsi-product-deploy-sample/tree/master/image_id_one_nic_vsi_sample/  |
 
 
 # Testing Sample Code 
