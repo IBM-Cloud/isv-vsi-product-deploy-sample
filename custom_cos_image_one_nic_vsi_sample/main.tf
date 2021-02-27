@@ -11,9 +11,9 @@ variable "generation" {
 
 provider "ibm" {
   /* Uncomment ibmcloud_api_key while testing from CLI */
-  //ibmcloud_api_key      = "${var.api_key}"
-  generation            = "${var.generation}" 
-  region                = "${var.region}"
+  // ibmcloud_api_key      = var.api_key
+  generation            = var.generation 
+  region                = var.region
   ibmcloud_timeout      = 300
 }
 
@@ -21,6 +21,6 @@ provider "ibm" {
 # Read/validate Region
 ##############################################################################
 data "ibm_is_region" "region" {
-  name = "${var.region}"
+  name = var.region
 }
 
