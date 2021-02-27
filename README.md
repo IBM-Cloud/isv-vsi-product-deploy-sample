@@ -17,7 +17,7 @@ Each of these scenarios can be tested using Terraform CLI commands and IBM Cloud
 
   (1) To test it from IBM Cloud Schematics, the path of the directory in this github repository need to be provided as the URL. For example to test the custom_cos_image_one_nic_vsi_sample scenario, the URL to be used in the IBM Cloud Schematics will be https://github.com/IBM-Cloud/isv-vsi-product-deploy-sample/tree/master/custom_cos_image_one_nic_vsi_sample/. Please refer the README file of respective scenarios to know more about the values to be specified in Schematics UI.
 
-  (2) To test the use case in CLI, change directory to the respective folder of the scenario. Example: /Users/username/vnf-samples/one_nic_vsi_sample. Execute terraform commands in the scenario directory. 
+  (2) To test the use case in CLI, change directory to the respective folder of the scenario. Example: /Users/username/isv-vsi-product-deploy-sample/custom_cos_image_one_nic_vsi_sample. Execute terraform commands in the scenario directory. 
     
     Example:   
     /Users/username/isv-vsi-product-deploy-sample/custom_cos_image_one_nic_vsi_sample> terraform init
