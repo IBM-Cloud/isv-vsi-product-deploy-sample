@@ -37,7 +37,7 @@ variable "ssh_key" {
 # vnf_vpc_image_name - The name of the RHEL custom image to be provisioned in your IBM Cloud account.
 ##############################################################################
 variable "vnf_vpc_image_name" {
-  default     = "rhel-"
+  default     = "rhel-custom-img"
   description = "The name of the RHEL custom image to be provisioned in your IBM Cloud account."
 }
 
