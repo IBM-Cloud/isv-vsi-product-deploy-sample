@@ -3,13 +3,13 @@
 ##############################################################################
 
 ##############################################################################
-# vnf_cos_image_url - Vendor provided RHEL image COS url.
+# vsi_cos_image_url - Vendor provided image COS url.
 #                             The value for this variable is enter at offering
 #                             onbaording time.This variable is hidden from the user.
 ##############################################################################
-variable "vnf_cos_image_url" {
+variable "vsi_cos_image_url" {
   default     = ""
-  description = "The COS image object SQL URL for RHEL qcow2 image."
+  description = "The COS image object SQL URL for qcow2 image."
 }
 
 ##############################################################################
@@ -17,15 +17,15 @@ variable "vnf_cos_image_url" {
 ##############################################################################
 variable "subnet_id"{
   default = ""
-  description =  "The id of the subnet to which RHEL VSI's primary interface belongs to"
+  description =  "The id of the subnet to which VSI's primary interface belongs to"
 }
 
 ##############################################################################
-# ssh_key_name - The name of the public SSH key to be used when provisining RHEL VSI.
+# ssh_key_name - The name of the public SSH key to be used when provisining VSI.
 ##############################################################################
 variable "ssh_key_name" {
   default     = ""
-  description = "The name of the public SSH key to be used when provisining RHEL VSI."
+  description = "The name of the public SSH key to be used when provisining VSI."
 }
 
 variable "ssh_key" {
@@ -34,27 +34,27 @@ variable "ssh_key" {
 }
 
 ##############################################################################
-# vnf_vpc_image_name - The name of the RHEL custom image to be provisioned in your IBM Cloud account.
+# vsi_vpc_image_name - The name of the custom image to be provisioned in your IBM Cloud account.
 ##############################################################################
-variable "vnf_vpc_image_name" {
-  default     = "rhel-custom-img"
-  description = "The name of the RHEL custom image to be provisioned in your IBM Cloud account."
+variable "vsi_vpc_image_name" {
+  default     = "sample-custom-img"
+  description = "The name of the custom image to be provisioned in your IBM Cloud account."
 }
 
 ##############################################################################
-# vnf_vpc_image_name - The name of your RHEL Virtual Server to be provisioned
+# vsi_image_name - The name of your Virtual Server to be provisioned
 ##############################################################################
-variable "vnf_instance_name" {
-  default     = "rhel-vsi"
-  description = "The name of your RHEL Virtual Server to be provisioned."
+variable "vsi_instance_name" {
+  default     = "sample-vsi"
+  description = "The name of your Virtual Server to be provisioned."
 }
 
 ##############################################################################
-# vnf_profile - The profile of compute CPU and memory resources to be used when provisioning RHEL VSI.
+# vsi_profile - The profile of compute CPU and memory resources to be used when provisioning VSI.
 ##############################################################################
-variable "vnf_profile" {
+variable "vsi_profile" {
   default     = "bx2-2x8"
-  description = "The profile of compute CPU and memory resources to be used when provisioning RHEL VSI. To list available profiles, run `ibmcloud is instance-profiles`."
+  description = "The profile of compute CPU and memory resources to be used when provisioning VSI. To list available profiles, run `ibmcloud is instance-profiles`."
 }
 
 variable "region" {
@@ -72,9 +72,9 @@ variable "region" {
 }*/
 
 ##############################################################################
-# vnf_securtiy_group - The security group to which the VSI interface belongs to.
+# vsi_securtiy_group - The security group to which the VSI interface belongs to.
 ##############################################################################
-variable "vnf_security_group" {
-  default     = "rhel-security-group"
-  description = "The security group for VNF VPC"
+variable "vsi_security_group" {
+  default     = "sample-security-group"
+  description = "The security group for VSI"
 }

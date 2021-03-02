@@ -15,7 +15,7 @@ Learn more: https://www.ibm.com/cloud/support
 the methods described in _IBM COS getting started docs_ (https://test.cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-getting-started). This qcow2 image will be used to create a
 custom image (https://cloud.ibm.com/docs/vpc?topic=vpc-managing-images) in the 
 customer account by the terraform script. It's recommended to delete the
-custom image after the VNF is created by terraform.
+custom image after the VSI is created by terraform.
 
 ## Costs
 
@@ -52,12 +52,12 @@ Fill in the following values, based on the steps that you completed before you b
 | `region` | The VPC region that you want your VPC virtual servers to be provisioned. | us-south |
 | `ssh_key_name` | The name of your public SSH key to be used for VSI. Follow [Public SSH Key Doc](https://cloud.ibm.com/docs/vpc-on-classic-vsi?topic=vpc-on-classic-vsi-ssh-keys) for creating and managing ssh key. | linux-ssh-key |
 | `ssh_key` | The value of your public SSH key to be used for VSI. This ssh key is copied to authorized keys in cloud init script during VSI provision | "ssh-rsa " |
-| `vnf_cos_image_url` | This is the vendor COS image SQL URL where the image(qcow2 image) is located. This is to copy the image from COS to VPC custom image in your IBM Cloud account VPC Infrastructure. First time, the image needs to be copied to your VPC cloud account. | cos://us-south/vnf-bucket/bionic-server-cloudimg-amd64.qcow2 |
-| `vnf_vpc_image_name` | The starting name of the qcow2 Custom Image to be provisioned in your IBM Cloud account and (if already available) to be used to create the virtual server instance. The name is appended with UUID, to create a unique custom image for every run. | ubuntu18-04 |
-| `vnf_profile` | The profile of compute CPU and memory resources to be used when provisioning the vnf instance. To list available profiles, run `ibmcloud is instance-profiles`. | bx2-2x8 |
-| `vnf_instance_name` | The name of the VNF instance to be provisioned. | ubuntu18-04-vsi |
-| `subnet_id` | The ID of the subnet which will be associated with first interface of the VNF instance. Click on the subnet details in the VPC Subnet Listing to determine this value | 0717-xxxxxx-xxxx-xxxxx-8fae-xxxxx |
-| `vnf_security_group` | The name of the security group to which the VNF Instance's interface belong to | ubuntu-security-group |
+| `vsi_cos_image_url` | This is the vendor COS image SQL URL where the image(qcow2 image) is located. This is to copy the image from COS to VPC custom image in your IBM Cloud account VPC Infrastructure. First time, the image needs to be copied to your VPC cloud account. | cos://us-south/vsi-bucket/bionic-server-cloudimg-amd64.qcow2 |
+| `vsi_vpc_image_name` | The starting name of the qcow2 Custom Image to be provisioned in your IBM Cloud account and (if already available) to be used to create the virtual server instance. The name is appended with UUID, to create a unique custom image for every run. | ubuntu18-04 |
+| `vsi_profile` | The profile of compute CPU and memory resources to be used when provisioning the vsi instance. To list available profiles, run `ibmcloud is instance-profiles`. | bx2-2x8 |
+| `vsi_instance_name` | The name of the VSI instance to be provisioned. | ubuntu18-04-vsi |
+| `subnet_id` | The ID of the subnet which will be associated with first interface of the VSI instance. Click on the subnet details in the VPC Subnet Listing to determine this value | 0717-xxxxxx-xxxx-xxxxx-8fae-xxxxx |
+| `vsi_security_group` | The name of the security group to which the VSI Instance's interface belong to | ubuntu-security-group |
 
 ## Notes
 
