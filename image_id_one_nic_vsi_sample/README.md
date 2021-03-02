@@ -23,7 +23,7 @@ When you apply template, the infrastructure resources that you create incur char
 
 
 * _VPC_: VPC charges are incurred for the infrastructure resources within the VPC, as well as network traffic for internet data transfer. For more information, see [Pricing for VPC](https://cloud.ibm.com/docs/vpc-on-classic?topic=vpc-on-classic-pricing-for-vpc).
-* _VPC Custom Image_: The template will copy over a custom Ubuntu 18.04 image - this can be a one time operation.  Ubuntu 18.04 virtual instances can be created from the custom image.  VPC charges per custom image.
+* _VPC Custom Image_: The template will copy over a custom image - this can be a one time operation.  Virtual instances can be created from the custom image.  VPC charges per custom image.
 
 ## Dependencies
 
@@ -50,12 +50,12 @@ Fill in the following values, based on the steps that you completed before you b
 | --- | ---------- | ------------- | 
 | `generation` | The VPC Generation 1 (classic) or Generation 2 that you want your VPC virtual servers to be provisioned.  | 2  |
 | `region` | The VPC region that you want your VPC virtual servers to be provisioned. | us-south |
-| `ssh_key_name` | The name of your public SSH key to be used for VSI. Follow [Public SSH Key Doc](https://cloud.ibm.com/docs/vpc-on-classic-vsi?topic=vpc-on-classic-vsi-ssh-keys) for creating and managing ssh key. | linux-ssh-key |
+| `ssh_key_name` | The name of your public SSH key to be used for VSI. Follow [Public SSH Key Doc](https://cloud.ibm.com/docs/vpc-on-classic-vsi?topic=vpc-on-classic-vsi-ssh-keys) for creating and managing ssh key. | sample-ssh-key |
 | `vsi_image_id` | The image id of the VSI to be provisioned in your IBM Cloud account. | r001-900-000-000 |
 | `vsi_profile` | The profile of compute CPU and memory resources to be used when provisioning the vsi instance. To list available profiles, run `ibmcloud is instance-profiles`. | bx2-2x8 |
-| `vsi_instance_name` | The name of the VSI instance to be provisioned. | ubuntu18-04-vsi |
+| `vsi_instance_name` | The name of the VSI instance to be provisioned. | sample-vsi |
 | `subnet_id` | The ID of the subnet which will be associated with first interface of the VSI instance. Click on the subnet details in the VPC Subnet Listing to determine this value | 0717-xxxxxx-xxxx-xxxxx-8fae-xxxxx |
-| `vsi_security_group` | The name of the security group to which the VSI Instance's interface belong to | ubuntu-security-group |
+| `vsi_security_group` | The name of the security group to which the VSI Instance's interface belong to | sample-security-group |
 
 ## Notes
 
