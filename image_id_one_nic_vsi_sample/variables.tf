@@ -20,15 +20,6 @@ variable "ssh_key_name" {
 }
 
 ##############################################################################
-# vsi_image_id - The id of the catalog image id to be provisioned in your IBM Cloud account.
-##############################################################################
-
-variable "vsi_image_id" {
-  default = ""
-  description = "The id of the catalog image to be provisioned in your IBM Cloud account."
-}
-
-##############################################################################
 # vsi_instance_name - The name of your Virtual Server to be provisioned
 ##############################################################################
 variable "vsi_instance_name" {
