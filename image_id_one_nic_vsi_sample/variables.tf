@@ -20,26 +20,26 @@ variable "ssh_key_name" {
 }
 
 ##############################################################################
-# vnf_vpc_image_name - The name of the catalog image to be provisioned in your IBM Cloud account.
+# vsi_image_id - The id of the catalog image id to be provisioned in your IBM Cloud account.
 ##############################################################################
 
-variable "vnf_image_id" {
+variable "vsi_image_id" {
   default = ""
   description = "The id of the catalog image to be provisioned in your IBM Cloud account."
 }
 
 ##############################################################################
-# vnf_vpc_instance_name - The name of your Virtual Server to be provisioned
+# vsi_instance_name - The name of your Virtual Server to be provisioned
 ##############################################################################
-variable "vnf_instance_name" {
-  default     = "ubuntu18-04-vsi"
+variable "vsi_instance_name" {
+  default     = "sample-vsi"
   description = "The name of your Virtual Server to be provisioned."
 }
 
 ##############################################################################
-# vnf_profile - The profile of compute CPU and memory resources to be used when provisioning VSI.
+# vsi_profile - The profile of compute CPU and memory resources to be used when provisioning VSI.
 ##############################################################################
-variable "vnf_profile" {
+variable "vsi_profile" {
   default     = "bx2-2x8"
   description = "The profile of compute CPU and memory resources to be used when provisioning VSI. To list available profiles, run `ibmcloud is instance-profiles`."
 }
@@ -59,9 +59,9 @@ variable "region" {
 }*/
 
 ##############################################################################
-# vnf_securtiy_group - The security group to which the VSI interface belongs to.
+# vsi_securtiy_group - The security group to which the VSI interface belongs to.
 ##############################################################################
-variable "vnf_security_group" {
-  default     = "ubuntu-security-group"
-  description = "The security group for VNF VPC"
+variable "vsi_security_group" {
+  default     = "sample-security-group"
+  description = "The security group for VSI"
 }
