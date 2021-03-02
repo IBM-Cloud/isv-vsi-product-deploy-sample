@@ -54,7 +54,9 @@ Fill in the following values, based on the steps that you completed before you b
 | `vsi_profile` | The profile of compute CPU and memory resources to be used when provisioning the vsi instance. To list available profiles, run `ibmcloud is instance-profiles`. | bx2-2x8 |
 | `vsi_instance_name` | The name of the VSI instance to be provisioned. | sample-vsi |
 | `subnet_id` | The ID of the subnet which will be associated with first interface of the VSI instance. Click on the subnet details in the VPC Subnet Listing to determine this value | 0717-xxxxxx-xxxx-xxxxx-8fae-xxxxx |
-| `vsi_security_group` | The name of the security group to which the VSI Instance's interface belong to | sample-security-group |
+| `vsi_security_group` | The name of the security group to which the VSI Instance's interface belong to | sample-security-group |  
+
+image-map.tf  is the file which contains the image id mapped to different regions. Modify the image map and update the image id of your regions.   
 
 ## Notes
 
