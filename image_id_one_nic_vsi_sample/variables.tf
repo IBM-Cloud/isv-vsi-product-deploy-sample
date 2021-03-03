@@ -56,3 +56,8 @@ variable "vsi_security_group" {
   default     = "sample-security-group"
   description = "The security group for VSI"
 }
+
+variable "TF_VERSION" {
+ default = "0.12"
+ description = "terraform engine version to be used in schematics"
+}
