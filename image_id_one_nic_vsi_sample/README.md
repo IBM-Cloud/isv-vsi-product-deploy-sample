@@ -1,6 +1,6 @@
 # image_id_one_nic_vsi_sample
 
-This directory contains the sample terraform code to create a VSI Instance with custom image id provided as input. 
+This directory contains the sample terraform code to create a Ubuntu VSI Instance. 
 
 # IBM Cloud IaaS Support
 You're provided free technical support through the IBM Cloud™ community and Stack Overflow, which you can access from the Support Center. The level of support that you select determines the severity that you can assign to support cases and your level of access to the tools available in the Support Center. Choose a Basic, Advanced, or Premium support plan to customize your IBM Cloud™ support experience for your business needs.
@@ -41,7 +41,7 @@ Before you can apply the template in IBM Cloud, complete the following steps.
 
 ## Configuring your deployment values
 
-Create a schematics workspace and provide the github repository url (https://github.com/IBM-Cloud/vnf-samples/multi_nic_vsi_sample) under settings to pull the latest code, so that you can set up your deployment variables from the `Create` page. Once the template is applied, IBM Cloud Schematics  provisions the resources based on the values that were specified for the deployment variables.
+Create a schematics workspace and provide the github repository url (https://github.com/IBM-Cloud/isv-vsi-product-deploy-sample/tree/main/image_id_one_nic_vsi_sample) under settings to pull the latest code, so that you can set up your deployment variables from the `Create` page. Once the template is applied, IBM Cloud Schematics  provisions the resources based on the values that were specified for the deployment variables.
 
 ### Required values
 Fill in the following values, based on the steps that you completed before you began.
@@ -55,8 +55,6 @@ Fill in the following values, based on the steps that you completed before you b
 | `vsi_instance_name` | The name of the VSI instance to be provisioned. | sample-vsi |
 | `subnet_id` | The ID of the subnet which will be associated with first interface of the VSI instance. Click on the subnet details in the VPC Subnet Listing to determine this value | 0717-xxxxxx-xxxx-xxxxx-8fae-xxxxx |
 | `vsi_security_group` | The name of the security group to which the VSI Instance's interface belong to | sample-security-group |  
-
-**NOTE:** **image-map.tf** is the file which contains the image id mapped to different regions. Modify the image map and update the image id of your regions.   
 
 ## Notes
 
