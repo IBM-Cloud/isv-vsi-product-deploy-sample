@@ -53,6 +53,14 @@ data "template_file" "user_data" {
   }
 }
 
+##############################################################################
+# This creates various network resources for the solution.
+##############################################################################
+
+data "ibm_is_subnet" "vsi_subnet"{
+   identifier = "${var.subnet_id}"
+}
+
 //security group
 resource "ibm_is_security_group" "vsi_security_group" {
   name           = var.vsi_security_group
