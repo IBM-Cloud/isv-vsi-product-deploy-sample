@@ -88,12 +88,17 @@ resource "ibm_is_security_group_rule" "vsi_sg_rule_out_all" {
   direction = "outbound"
   remote    = "0.0.0.0/0"
 }
-
+ 
+//ubuntu image  
+data "ibm_is_image" "ubuntu_image" {
+		name = "ibm-ubuntu-20-04-minimal-amd64-2"
+}  
+  
 //vsi instance 
 resource "ibm_is_instance" "sample_vsi" {
   depends_on = [ibm_is_security_group_rule.vsi_sg_rule_out_all]
   name           = var.vsi_instance_name
-  image          = local.image_map[var.region]
+  image          = data.ibm_is_image.ubuntu_image.id
   profile        = data.ibm_is_instance_profile.vsi_profile.name
   resource_group = data.ibm_is_subnet.vsi_subnet.resource_group
 
