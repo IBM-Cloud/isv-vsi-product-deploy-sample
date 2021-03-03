@@ -48,7 +48,7 @@ Fill in the following values, based on the steps that you completed before you b
 
 | Key | Definition | Value Example |
 | --- | ---------- | ------------- | 
-| `generation` | The VPC Generation 1 (classic) or Generation 2 that you want your VPC virtual servers to be provisioned.  | 2  |
+| `generation` | The VPC Generation 2 that you want your VPC virtual servers to be provisioned.  | 2  |
 | `region` | The VPC region that you want your VPC virtual servers to be provisioned. | us-south |
 | `ssh_key_name` | The name of your public SSH key to be used for VSI. Follow [Public SSH Key Doc](https://cloud.ibm.com/docs/vpc-on-classic-vsi?topic=vpc-on-classic-vsi-ssh-keys) for creating and managing ssh key. | sample-ssh-key |
 | `vsi_profile` | The profile of compute CPU and memory resources to be used when provisioning the vsi instance. To list available profiles, run `ibmcloud is instance-profiles`. | bx2-2x8 |
