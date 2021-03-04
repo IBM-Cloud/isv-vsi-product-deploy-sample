@@ -91,7 +91,7 @@ resource "ibm_is_security_group_rule" "vsi_sg_rule_out_all" {
  
 //ubuntu image  
 data "ibm_is_image" "ubuntu_image" {
-		name = "ibm-ubuntu-20-04-minimal-amd64-2"
+  name = "ibm-ubuntu-20-04-minimal-amd64-2"
 }  
   
 //vsi instance 
