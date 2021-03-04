@@ -1,14 +1,14 @@
 # isv-vsi-product-deploy-sample
 Templated for any IBM 3rd party vendor, that wishes to be part of IBM Cloud
 
-This repository contains sample terraform codes to create VNF instances with different scenarios like Single NIC Instance using a custom COS image, image id, etc.
+This repository contains sample terraform codes to create VSI instances with different scenarios like Single NIC Instance using a custom COS image, image id, etc.
 
 The different scenarios for which the sample code are available are:
 
 | Scenario | Description | URL |
 |----------|-------------|-----|
-| Using custom COS image one nic vsi | Contains the sample terraform code to create a VNF Instance with a single network interface using a custom cos image. | https://github.com/IBM-Cloud/isv-vsi-product-deploy-sample/tree/master/custom_cos_image_one_nic_vsi_sample/ | 
-| Using catalog image id one nic vsi | Contains the sample terraform code to create a VNF Instance with a single network interface using a catalog image id as input. | https://github.com/IBM-Cloud/isv-vsi-product-deploy-sample/tree/master/image_id_one_nic_vsi_sample/  |
+| Using custom COS image one nic vsi | Contains the sample terraform code to create a VSI Instance with a single network interface using a custom cos image. | https://github.com/IBM-Cloud/isv-vsi-product-deploy-sample/tree/master/custom_cos_image_one_nic_vsi_sample/ | 
+| Using catalog image id one nic vsi | Contains the sample terraform code to create a VSI Instance with a single network interface using a catalog image id as input. | https://github.com/IBM-Cloud/isv-vsi-product-deploy-sample/tree/master/image_id_one_nic_vsi_sample/  |
 
 
 # Testing Sample Code 
