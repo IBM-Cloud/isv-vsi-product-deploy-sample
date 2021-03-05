@@ -1,3 +1,28 @@
+# Description
+To be filled in.
+
+# Prerequisites
+To be filled in.
+
+# Onboard to Virtual Server Instance image catalog
+   - create qcow2 image
+   - import private image with unique name
+   - test image
+   - make private image public
+   
+# Create Terraform template
+To be filled in.
+
+# Create GIT release for artifacts and .tgz
+To be filled in.
+
+# Onboard artifacts to IBM Cloud Catalog (reference to platform docs) (https://cloud.ibm.com/docs/third-party)
+
+# Update image and Terraform versions
+   - run vulnerability scans
+
+---------------------------------------------------------------------
+
 # image_id_one_nic_vsi_sample
 
 This directory contains the sample terraform code to create a Ubuntu VSI Instance. The user has to ensure that the image name exists in all regions.  The image name is `"ibm-ubuntu-20-04-minimal-amd64-2"`
