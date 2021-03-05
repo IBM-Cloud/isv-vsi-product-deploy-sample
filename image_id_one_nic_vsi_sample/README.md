@@ -1,6 +1,6 @@
 # image_id_one_nic_vsi_sample
 
-This directory contains the sample terraform code to create a Ubuntu VSI Instance. 
+This directory contains the sample terraform code to create a Ubuntu VSI Instance. The user has to ensure that the image name exists in all regions.  The image name is `"ibm-ubuntu-20-04-minimal-amd64-2"`
 
 # IBM Cloud IaaS Support
 You're provided free technical support through the IBM Cloud™ community and Stack Overflow, which you can access from the Support Center. The level of support that you select determines the severity that you can assign to support cases and your level of access to the tools available in the Support Center. Choose a Basic, Advanced, or Premium support plan to customize your IBM Cloud™ support experience for your business needs.
