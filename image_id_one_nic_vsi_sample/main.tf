@@ -89,7 +89,7 @@ resource "ibm_is_security_group_rule" "vsi_sg_rule_out_all" {
   remote    = "0.0.0.0/0"
 }
  
-//ubuntu image  
+//ubuntu image with below name should be present in all regions in IBM Cloud  
 data "ibm_is_image" "ubuntu_image" {
   name = "ibm-ubuntu-20-04-minimal-amd64-2"
 }  
