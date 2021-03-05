@@ -1,22 +1,26 @@
 # Description
-To be filled in.
+Describe what this sample is and why to use it.
 
 # Prerequisites
+   - create a VPC, subnet, and SSH Key 
+   - have a tested image that works in VPC.  Tested image means its a cooked image in qcow2 format stored in COS, imported and tested in VSI creation using existing VPC methods (UI, cli or api)
+
+# Import image into each region 
+   - use same image name in each region
+   - save image ids when doing this.  image ids are different in each region.
+
+# Create Terraform template
 To be filled in.
 
-# Onboard to Virtual Server Instance image catalog
-   - create qcow2 image
-   - import private image with unique name
-   - test image
-   - make private image public
-   
-# Create Terraform template
+# Test Terraform template
 To be filled in.
 
 # Create GIT release for artifacts and .tgz
 To be filled in.
 
-# Onboard artifacts to IBM Cloud Catalog (reference to platform docs) (https://cloud.ibm.com/docs/third-party)
+# Onboard release artifact to IBM Cloud Catalog (reference to platform docs) (https://cloud.ibm.com/docs/third-party)
+
+# make image public in each region
 
 # Update image and Terraform versions
    - run vulnerability scans
