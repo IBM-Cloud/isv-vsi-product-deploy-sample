@@ -1,3 +1,32 @@
+# Description
+Describe what this sample is and why to use it.
+
+# Prerequisites
+   - create a VPC, subnet, and SSH Key 
+   - have a tested image that works in VPC.  Tested image means its a cooked image in qcow2 format stored in COS, imported and tested in VSI creation using existing VPC methods (UI, cli or api)
+
+# Import image into each region 
+   - use same image name in each region
+   - save image ids when doing this.  image ids are different in each region.
+
+# Create Terraform template
+To be filled in.
+
+# Test Terraform template
+To be filled in.
+
+# Create GIT release for artifacts and .tgz
+To be filled in.
+
+# Onboard release artifact to IBM Cloud Catalog (reference to platform docs) (https://cloud.ibm.com/docs/third-party)
+
+# make image public in each region
+
+# Update image and Terraform versions
+   - run vulnerability scans
+
+---------------------------------------------------------------------
+
 # image_id_one_nic_vsi_sample
 
 This directory contains the sample terraform code to create a Ubuntu VSI Instance. The user has to ensure that the image name exists in all regions.  The image name is `"ibm-ubuntu-20-04-minimal-amd64-2"`
