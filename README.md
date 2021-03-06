@@ -1,13 +1,9 @@
 # Description
-Describe what this sample is and why to use it.
+This directory contains the sample terraform code to create a Ubuntu VSI Instance. 
 
 # Prerequisites
    - create a VPC, subnet, and SSH Key 
-   - have a tested image that works in VPC.  Tested image means its a cooked image in qcow2 format stored in COS, imported and tested in VSI creation using existing VPC methods (UI, cli or api)
-
-# Import image into each region 
-   - use same image name in each region
-   - save image ids when doing this.  image ids are different in each region.
+   - The user has to ensure that the image name `"ibm-ubuntu-20-04-minimal-amd64-2"` exists in all regions in IBM Cloud. 
 
 # Create Terraform template
 To be filled in.
@@ -20,14 +16,9 @@ To be filled in.
 
 # Onboard release artifact to IBM Cloud Catalog (reference to platform docs) (https://cloud.ibm.com/docs/third-party)
 
-# make image public in each region
-
-# Update image and Terraform versions
-   - run vulnerability scans
-
 ---------------------------------------------------------------------
 
-# image_id_one_nic_vsi_sample
+# image_one_nic_vsi_sample
 
 This directory contains the sample terraform code to create a Ubuntu VSI Instance. The user has to ensure that the image name exists in all regions.  The image name is `"ibm-ubuntu-20-04-minimal-amd64-2"`
 
@@ -58,7 +49,6 @@ When you apply template, the infrastructure resources that you create incur char
 
 Before you can apply the template in IBM Cloud, complete the following steps.
 
-
 1.  Ensure that you have the following permissions in IBM Cloud Identity and Access Management:
     * `Manager` service access role for IBM Cloud Schematics
     * `Operator` platform role for VPC Infrastructure
@@ -70,7 +60,7 @@ Before you can apply the template in IBM Cloud, complete the following steps.
 
 ## Configuring your deployment values
 
-Create a schematics workspace and provide the github repository url (https://github.com/IBM-Cloud/isv-vsi-product-deploy-sample/tree/main/image_id_one_nic_vsi_sample) under settings to pull the latest code, so that you can set up your deployment variables from the `Create` page. Once the template is applied, IBM Cloud Schematics  provisions the resources based on the values that were specified for the deployment variables.
+Create a schematics workspace and provide the github repository url (https://github.com/IBM-Cloud/isv-vsi-product-deploy-sample) under settings to pull the latest code, so that you can set up your deployment variables from the `Create` page. Once the template is applied, IBM Cloud Schematics  provisions the resources based on the values that were specified for the deployment variables.
 
 ### Required values
 Fill in the following values, based on the steps that you completed before you began.
