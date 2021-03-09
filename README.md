@@ -2,40 +2,166 @@
 This directory contains the sample terraform code to create a VSI Instance. 
 
 # Prerequisites
-   - create a VPC, subnet, and SSH Key 
-   - The user has to ensure that the input image name exists in all regions in IBM Cloud. 
+   - The user has imported their solution into IBM Cloud and tested it. 
+      - Create a Cloud Object Storage (COS) Bucket and upload the qcow2 image using
+        the methods described in _IBM COS getting started docs_ (https://test.cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-getting-started). This qcow2 image will be used to create a custom image (https://cloud.ibm.com/docs/vpc?topic=vpc-managing-images) in the 
+                  customer account. 
+      - create a VPC and subnet https://cloud.ibm.com/docs/vpc?topic=vpc-getting-started
+      - create SSH Key. https://cloud.ibm.com/docs/vpc?topic=vpc-ssh-keys
+      - create a VSI using your custom image. https://cloud.ibm.com/docs/vpc?topic=vpc-creating-virtual-servers
 
+# Import Custom Image to all regions
+   - When you are ready to make your image publicly available you will need to import your image into every region that you want your solution to be available.  The below API example is recommended as it will allows you to use a single COS bucket.  
+ensure that the image name is unique and the same across all regions.
+Record the image id returned for each image.  Images are regional, so each region will have a different image id.
+
+```curl -X POST -k -Ss "<region endpoint>/v1/images?generation=2&version=2021-02-26" -H "Authorization: Bearer <IAM token>"  -d '{ "name": "myimage", "file": {"href": "cos://us-south/my-bucket/myimage.qcow2"}, "operating_system": { "name": "centos-8-amd64"} } '  |  jq .```
+
+Response:
+```
+{
+  "id": "r134-e2a3594d-eef0-4e20-bbcb-d9ca8a2fc9fa",
+  "crn": "crn:v1:staging:public:is:us-south:a/<removed>::image:r134-e2a3594d-eef0-4e20-bbcb-d9ca8a2fc9fa",
+  "href": "https://us-south-genesis-test02.iaasdev.cloud.ibm.com/v1/images/r134-e2a3594d-eef0-4e20-bbcb-d9ca8a2fc9fa",
+  "name": "myimage",
+  "resource_group": {
+    "id": "<removed>",
+    "href": "https://resource-controller.test.cloud.ibm.com/v1/resource_groups/<removed>"
+  },
+  "created_at": "2021-02-26T15:19:08Z",
+  "file": {},
+  "operating_system": {
+    "href": "https://us-south-genesis-test02.iaasdev.cloud.ibm.com/v1/operating_systems/centos-8-amd64",
+    "name": "centos-8-amd64",
+    "architecture": "amd64",
+    "display_name": "CentOS 8.x - Minimal Install (amd64)",
+    "family": "CentOS",
+    "vendor": "CentOS",
+    "version": "8.x - Minimal Install",
+    "dedicated_host_only": false
+  },
+  "status": "pending",
+  "visibility": "private",
+  "encryption": "none",
+  "status_reasons": []
+}
+```
+
+The image status will transition from pending to available after several minutes.  To check on the status:
+
+```
+curl -k -sS -X GET "<region endpoint>/v1/images/<image id>?generation=2&limit=100&version=2021-02-26" -H "Authorization: Bearer <IAM token>"  | jq .
+{
+  "id": "r134-e2a3594d-eef0-4e20-bbcb-d9ca8a2fc9fa",
+  "crn": "crn:v1:staging:public:is:us-south:a/<removed>::image:r134-e2a3594d-eef0-4e20-bbcb-d9ca8a2fc9fa",
+  "href": "https://us-south-genesis-test02.iaasdev.cloud.ibm.com/v1/images/r134-e2a3594d-eef0-4e20-bbcb-d9ca8a2fc9fa",
+  "name": "myimage",
+  "resource_group": {
+    "id": "<removed>",
+    "href": "https://resource-controller.test.cloud.ibm.com/v1/resource_groups/<removed>"
+  },
+  "created_at": "2021-02-26T15:19:08Z",
+  "file": {},
+  "operating_system": {
+    "href": "https://us-south-genesis-test02.iaasdev.cloud.ibm.com/v1/operating_systems/centos-8-amd64",
+    "name": "centos-8-amd64",
+    "architecture": "amd64",
+    "display_name": "CentOS 8.x - Minimal Install (amd64)",
+    "family": "CentOS",
+    "vendor": "CentOS",
+    "version": "8.x - Minimal Install",
+    "dedicated_host_only": false
+  },
+  "status": "available",
+  "visibility": "private",
+  "encryption": "none",
+  "status_reasons": []
+}
+```
+
+The region endpoint can be derived using the /regions API:
+```curl -k -sS -X GET "<region endpoint>/v1/regions?generation=2&version=2021-02-26" -H "Authorization: Bearer <IAM token>"  | jq .
+{
+  "regions": [
+    {
+      "name": "au-syd",
+      "href": "https://us-south.iaas.cloud.ibm.com/v1/regions/au-syd",
+      "endpoint": "https://au-syd.iaas.cloud.ibm.com",
+      "status": "available"
+    },
+    {
+      "name": "eu-de",
+      "href": "https://us-south.iaas.cloud.ibm.com/v1/regions/eu-de",
+      "endpoint": "https://eu-de.iaas.cloud.ibm.com",
+      "status": "available"
+    },
+    {
+      "name": "eu-gb",
+      "href": "https://us-south.iaas.cloud.ibm.com/v1/regions/eu-gb",
+      "endpoint": "https://eu-gb.iaas.cloud.ibm.com",
+      "status": "available"
+    },
+    {
+      "name": "jp-osa",
+      "href": "https://us-south.iaas.cloud.ibm.com/v1/regions/jp-osa",
+      "endpoint": "https://jp-osa.iaas.cloud.ibm.com",
+      "status": "available"
+    },
+    {
+      "name": "jp-tok",
+      "href": "https://us-south.iaas.cloud.ibm.com/v1/regions/jp-tok",
+      "endpoint": "https://jp-tok.iaas.cloud.ibm.com",
+      "status": "available"
+    },
+    {
+      "name": "us-east",
+      "href": "https://us-south.iaas.cloud.ibm.com/v1/regions/us-east",
+      "endpoint": "https://us-east.iaas.cloud.ibm.com",
+      "status": "available"
+    },
+    {
+      "name": "us-south",
+      "href": "https://us-south.iaas.cloud.ibm.com/v1/regions/us-south",
+      "endpoint": "https://us-south.iaas.cloud.ibm.com",
+      "status": "available"
+    }
+  ]
+}
+```
+
+You now have private images in each desired region.  The REST API supports patching the visibility of the image to 'public'.  Note that this will effectively make the image usable by any other IBM Cloud account, however, the image will not actually be visible to other accounts.  Your image will not be discoverable via the API.  In order to provision a VSI using the image, the image id needs to be known.  
+
+**<continue here after being allowlisted> **   
+  
 # Create Terraform template
-To be filled in.
+   - create your template https://cloud.ibm.com/docs/schematics?topic=schematics-create-tf-config
+   - (Malar)is the above doc enough to create a template or is there more?
+   - Ensure that you have the following permissions in IBM Cloud Identity and Access Management:
+    * `Manager` service access role for IBM Cloud Schematics
+    * `Operator` platform role for VPC Infrastructure
 
 # Test Terraform template
-To be filled in.
+   - (Malar) what do you suggest here for testing?
+
+# Make your image public (patch api)
+
+   - **approval must happen before this.**
+  
+To patch the visibility of the image:
+```
+curl  -X PATCH "<region endpoint>/v1/images/<image id>?generation=2&version=2021-02-26"  -H "Authorization: Bearer <IAM token>" -d '{"visibility": "public"} ' | jq .
+```
 
 # Create GIT release for artifacts and .tgz
-To be filled in.
+   - (Malar) does the directory structure matter within the GIT repo
 
 # Onboard release artifact to IBM Cloud Catalog (reference to platform docs) (https://cloud.ibm.com/docs/third-party)
 
----------------------------------------------------------------------
+-------------------------------------------------- below is all from previous version -------------------
 
 # image_one_nic_vsi_sample
 
 This directory contains the sample terraform code to create a Ubuntu VSI Instance. The user has to ensure that the input image name exists in all regions.  
-
-# IBM Cloud IaaS Support
-You're provided free technical support through the IBM Cloud™ community and Stack Overflow, which you can access from the Support Center. The level of support that you select determines the severity that you can assign to support cases and your level of access to the tools available in the Support Center. Choose a Basic, Advanced, or Premium support plan to customize your IBM Cloud™ support experience for your business needs.
-
-Learn more: https://www.ibm.com/cloud/support
-
-## Prerequisites
-
-- Have access to [Gen 2 VPC](https://cloud.ibm.com/vpc-ext/).
-- The given VPC must have at least one subnet with one IP address unassigned in each subnet - the VSI will be assigned an IP Address in its primary network interface from the user provided subnet as the input.
-- Create a **Publicly Accessible** Cloud Object Storage (COS) Bucket and upload the qcow2 image using
-the methods described in _IBM COS getting started docs_ (https://test.cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-getting-started). This qcow2 image will be used to create a
-custom image (https://cloud.ibm.com/docs/vpc?topic=vpc-managing-images) in the 
-customer account by the terraform script. It's recommended to delete the
-custom image after the VSI is created by terraform.
 
 ## Costs
 
