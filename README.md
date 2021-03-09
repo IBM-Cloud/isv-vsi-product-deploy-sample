@@ -1,5 +1,5 @@
 # Description
-This directory contains the sample terraform code to create a Ubuntu VSI Instance. 
+This directory contains the sample terraform code to create a VSI Instance. 
 
 # Prerequisites
    - The user has imported their solution into IBM Cloud and tested it. 
@@ -132,7 +132,7 @@ The region endpoint can be derived using the /regions API:
 You now have private images in each desired region.  The REST API supports patching the visibility of the image to 'public'.  Note that this will effectively make the image usable by any other IBM Cloud account, however, the image will not actually be visible to other accounts.  Your image will not be discoverable via the API.  In order to provision a VSI using the image, the image id needs to be known.  
 
 **<continue here after being allowlisted> **   
-   
+  
 # Create Terraform template
    - create your template https://cloud.ibm.com/docs/schematics?topic=schematics-create-tf-config
    - (Malar)is the above doc enough to create a template or is there more?
@@ -161,7 +161,7 @@ curl  -X PATCH "<region endpoint>/v1/images/<image id>?generation=2&version=202
 
 # image_one_nic_vsi_sample
 
-This directory contains the sample terraform code to create a Ubuntu VSI Instance. The user has to ensure that the image name exists in all regions.  The image name is `"ibm-ubuntu-20-04-minimal-amd64-2"`
+This directory contains the sample terraform code to create a Ubuntu VSI Instance. The user has to ensure that the input image name exists in all regions.  
 
 ## Costs
 
@@ -195,6 +195,7 @@ Fill in the following values, based on the steps that you completed before you b
 | --- | ---------- | ------------- | 
 | `generation` | The VPC Generation 2 that you want your VPC virtual servers to be provisioned.  | 2  |
 | `region` | The VPC region that you want your VPC virtual servers to be provisioned. | us-south |
+| `image_name` | The name of the image that you want your VPC virtual servers to be provisioned. | ibm-ubuntu-20-04-minimal-amd64-2 |
 | `ssh_key_name` | The name of your public SSH key to be used for VSI. Follow [Public SSH Key Doc](https://cloud.ibm.com/docs/vpc-on-classic-vsi?topic=vpc-on-classic-vsi-ssh-keys) for creating and managing ssh key. | sample-ssh-key |
 | `vsi_profile` | The profile of compute CPU and memory resources to be used when provisioning the vsi instance. To list available profiles, run `ibmcloud is instance-profiles`. | bx2-2x8 |
 | `vsi_instance_name` | The name of the VSI instance to be provisioned. | sample-vsi |
