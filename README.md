@@ -85,7 +85,8 @@ curl -k -sS -X GET "<region endpoint>/v1/images/<image id>?generation=2&limit=10
 
 The region endpoint can be derived by using the /regions API as shown in the following example:
 
-```curl -k -sS -X GET "<region endpoint>/v1/regions?generation=2&version=2021-02-26" -H "Authorization: Bearer <IAM token>"  | jq .
+```
+curl -k -sS -X GET "<region endpoint>/v1/regions?generation=2&version=2021-02-26" -H "Authorization: Bearer <IAM token>"  | jq .
 {
   "regions": [
     {
@@ -133,6 +134,7 @@ The region endpoint can be derived by using the /regions API as shown in the fol
   ]
 }
 ```
+
 You now have private images in each desired region.   
   
 # Create your Terraform template
