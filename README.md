@@ -148,7 +148,13 @@ For the detailed steps, see [Creating Terraform templates](https://cloud.ibm.com
 
 # Test your Terraform template
 
-_Add link to docs_
+Test with regular TF CLI.
+
+# Create GIT release for artifacts and .tgz
+
+# Onboard to private catalog and validate
+
+For details, see https://test.cloud.ibm.com/docs/third-party?topic=third-party-sw-validate.
 
 # Make your image public (patch API)
 
@@ -160,13 +166,6 @@ To patch the visibility of the image:
 ```
 curl  -X PATCH "<region endpoint>/v1/images/<image id>?generation=2&version=2021-02-26"  -H "Authorization: Bearer <IAM token>" -d '{"visibility": "public"} ' | jq .
 ```
-
-# Create GIT release for artifacts and .tgz
-
-
-# Import your software
-
-For details, see https://test.cloud.ibm.com/docs/third-party?topic=third-party-sw-validate.
 
 
 
