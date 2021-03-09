@@ -2,6 +2,13 @@
 # Variable block - See each variable description
 ##############################################################################
 
+##############################################################################
+# image_name - Name of the image to spin up VSI.
+##############################################################################
+variable "image_name"{
+  default = "ibm-ubuntu-20-04-minimal-amd64-2"
+  description = "The name of the image to spin up VSI"
+}
 
 ##############################################################################
 # subnet_id - Subnet where resources are to be provisioned.
