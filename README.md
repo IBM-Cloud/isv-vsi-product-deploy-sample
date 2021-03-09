@@ -1,23 +1,23 @@
 # Description
-This directory contains the sample terraform code to create a VSI Instance. 
+This directory contains the sample terraform code to create a virtual server instance (VSI) image. 
 
 # Prerequisites
-   - The user has imported their solution into IBM Cloud and tested it. 
-      - Create a Cloud Object Storage (COS) Bucket and upload the qcow2 image using
-        the methods described in _IBM COS getting started docs_ (https://test.cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-getting-started). This qcow2 image will be used to create a custom image (https://cloud.ibm.com/docs/vpc?topic=vpc-managing-images) in the 
-                  customer account. 
-      - create a VPC and subnet https://cloud.ibm.com/docs/vpc?topic=vpc-getting-started
-      - create SSH Key. https://cloud.ibm.com/docs/vpc?topic=vpc-ssh-keys
-      - create a VSI using your custom image. https://cloud.ibm.com/docs/vpc?topic=vpc-creating-virtual-servers
 
-# Import Custom Image to all regions
-   - When you are ready to make your image publicly available you will need to import your image into every region that you want your solution to be available.  The below API example is recommended as it will allows you to use a single COS bucket.  
-ensure that the image name is unique and the same across all regions.
-Record the image id returned for each image.  Images are regional, so each region will have a different image id.
+  - Create an IBM Cloud Object Storage bucket and upload the `qcow2` image, which will be used to create a custom image in your account. For more information, see [Getting started with Cloud Object Storage](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage).
+  - Create a Virtual Private Cloud (VPC) and subnet. For more information, see [Getting started with VPC](https://cloud.ibm.com/docs/vpc?topic=vpc-getting-started).  
+  - Create a [SSH key](https://cloud.ibm.com/docs/vpc?topic=vpc-ssh-keys). 
+  - Create a [virtual server instance](https://cloud.ibm.com/docs/vpc?topic=vpc-creating-virtual-servers).   
+
+# Import your custom image to all supported regions
+
+When you are ready to make your image publicly available, import your image to every region in which you want your solution to be available. The following API example shows how to use a single IBM Cloud Object Storage bucket. Make sure the image name is unique and the same value across all regions. Record the image ID that's returned for each image. 
+
+**Tip**: Images are regional, so a different image ID is used for each region.
+
 
 ```curl -X POST -k -Ss "<region endpoint>/v1/images?generation=2&version=2021-02-26" -H "Authorization: Bearer <IAM token>"  -d '{ "name": "myimage", "file": {"href": "cos://us-south/my-bucket/myimage.qcow2"}, "operating_system": { "name": "centos-8-amd64"} } '  |  jq .```
 
-Response:
+**Response**:
 ```
 {
   "id": "r134-e2a3594d-eef0-4e20-bbcb-d9ca8a2fc9fa",
@@ -47,7 +47,7 @@ Response:
 }
 ```
 
-The image status will transition from pending to available after several minutes.  To check on the status:
+The image status will transition from pending to available after several minutes. To check the status, see the following example:
 
 ```
 curl -k -sS -X GET "<region endpoint>/v1/images/<image id>?generation=2&limit=100&version=2021-02-26" -H "Authorization: Bearer <IAM token>"  | jq .
@@ -79,7 +79,8 @@ curl -k -sS -X GET "<region endpoint>/v1/images/<image id>?generation=2&limit=10
 }
 ```
 
-The region endpoint can be derived using the /regions API:
+The region endpoint can be derived by using the /regions API as shown in the following example:
+
 ```curl -k -sS -X GET "<region endpoint>/v1/regions?generation=2&version=2021-02-26" -H "Authorization: Bearer <IAM token>"  | jq .
 {
   "regions": [
@@ -128,24 +129,27 @@ The region endpoint can be derived using the /regions API:
   ]
 }
 ```
-
-You now have private images in each desired region.  The REST API supports patching the visibility of the image to 'public'.  Note that this will effectively make the image usable by any other IBM Cloud account, however, the image will not actually be visible to other accounts.  Your image will not be discoverable via the API.  In order to provision a VSI using the image, the image id needs to be known.  
+You now have private images in each desired region. 
 
 **<continue here after being allowlisted> **   
   
-# Create Terraform template
-   - create your template https://cloud.ibm.com/docs/schematics?topic=schematics-create-tf-config
-   - (Malar)is the above doc enough to create a template or is there more?
-   - Ensure that you have the following permissions in IBM Cloud Identity and Access Management:
-    * `Manager` service access role for IBM Cloud Schematics
-    * `Operator` platform role for VPC Infrastructure
+# Create your Terraform template
 
-# Test Terraform template
-   - (Malar) what do you suggest here for testing?
+Before you begin, make sure that you have the following IBM Cloud Identity and Access Management (IAM) permissions:
+    * Manager service access role for IBM Cloud Schematics
+    * Operator platform role for VPC Infrastructure
 
-# Make your image public (patch api)
+For the detailed steps, see [Creating Terraform templates](https://cloud.ibm.com/docs/schematics?topic=schematics-create-tf-config).  
+
+# Test your Terraform template
+
+_Add link to docs_
+
+# Make your image public (patch API)
 
    - **approval must happen before this.**
+
+The REST API supports patching the visibility of the image to 'public'.  Note that this will effectively make the image usable by any other IBM Cloud account, however, the image will not actually be visible to other accounts.  Your image will not be discoverable via the API.  In order to provision a VSI using the image, the image id needs to be known.  
   
 To patch the visibility of the image:
 ```
@@ -153,9 +157,13 @@ curl  -X PATCH "<region endpoint>/v1/images/<image id>?generation=2&version=202
 ```
 
 # Create GIT release for artifacts and .tgz
-   - (Malar) does the directory structure matter within the GIT repo
 
-# Onboard release artifact to IBM Cloud Catalog (reference to platform docs) (https://cloud.ibm.com/docs/third-party)
+
+# Import your software
+
+For details, see https://test.cloud.ibm.com/docs/third-party?topic=third-party-sw-validate.
+
+
 
 -------------------------------------------------- below is all from previous version -------------------
 
