@@ -158,7 +158,9 @@ For details, see https://test.cloud.ibm.com/docs/third-party?topic=third-party-s
 
 # Make your image public (patch API)
 
-You can make your image public only after you validate your Terraform template and IBM Cloud has provided the appropriate access for you to perform this action.
+**Note**: You can make your image public only after you validate your Terraform template, submit your publishing request, and IBM Cloud has approved your publishing request. 
+
+_CB notes: and IBM Cloud has provided the appropriate access for you to perform this action_
 
 Need to note that using the API is limited to vendor accounts that are added to the specific allowlist. 
 
