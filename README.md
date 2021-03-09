@@ -4,7 +4,6 @@ This directory contains the sample terraform code to create a virtual server ins
 # Prerequisites
 
   1. Create an IBM Cloud Object Storage bucket and upload the `qcow2` image, which will be used to create a custom image in your account. For more information, see the following links:
-    
     * [Getting started with Cloud Object Storage](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage)
     * [Images](https://cloud.ibm.com/docs/vpc?topic=vpc-about-images)
   
