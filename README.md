@@ -158,12 +158,12 @@ For details, see https://test.cloud.ibm.com/docs/third-party?topic=third-party-s
 
 # Make your image public (patch API)
 
-**Note**: You can make your image public only after you validate your Terraform template, submit your publishing request, and IBM Cloud has approved your publishing request. 
+**Note**: You can make your image public only after you validate your Terraform template, and IBM has granted you access to run the command.
 
 _CB notes:_
-
-_* Need to note that using the API is limited to vendor accounts that are added to the specific allowlist._
-_* Add details about how to contact the concierge team if they need help._
+  
+  * Need to note that using the API is limited to vendor accounts that are added to the specific allowlist.
+  * Add details about how to contact the concierge team if they need help.
 
 The REST API supports patching the visibility of the image to 'public'.  Note that this will effectively make the image usable by any other IBM Cloud account, however, the image will not actually be visible to other accounts.  Your image will not be discoverable via the API.  In order to provision a VSI using the image, the image ID needs to be known.  
   
