@@ -14,7 +14,59 @@ This directory contains the sample terraform code to create a virtual server ins
 
 # Import your custom image to all supported regions
 
-When you are ready to make your image publicly available, import your image to every region in which you want your solution to be available. The following API example shows how to use a single IBM Cloud Object Storage bucket. Make sure the image name is unique and the same value across all regions. Record the image ID that's returned for each image. 
+When you are ready to make your image publicly available, import your image to every region in which you want your solution to be available. The region endpoint can be derived by using the /regions API as shown in the following example:
+
+```
+curl -k -sS -X GET "<region endpoint>/v1/regions?generation=2&version=2021-02-26" -H "Authorization: Bearer <IAM token>"  | jq .
+{
+  "regions": [
+    {
+      "name": "au-syd",
+      "href": "https://us-south.iaas.cloud.ibm.com/v1/regions/au-syd",
+      "endpoint": "https://au-syd.iaas.cloud.ibm.com",
+      "status": "available"
+    },
+    {
+      "name": "eu-de",
+      "href": "https://us-south.iaas.cloud.ibm.com/v1/regions/eu-de",
+      "endpoint": "https://eu-de.iaas.cloud.ibm.com",
+      "status": "available"
+    },
+    {
+      "name": "eu-gb",
+      "href": "https://us-south.iaas.cloud.ibm.com/v1/regions/eu-gb",
+      "endpoint": "https://eu-gb.iaas.cloud.ibm.com",
+      "status": "available"
+    },
+    {
+      "name": "jp-osa",
+      "href": "https://us-south.iaas.cloud.ibm.com/v1/regions/jp-osa",
+      "endpoint": "https://jp-osa.iaas.cloud.ibm.com",
+      "status": "available"
+    },
+    {
+      "name": "jp-tok",
+      "href": "https://us-south.iaas.cloud.ibm.com/v1/regions/jp-tok",
+      "endpoint": "https://jp-tok.iaas.cloud.ibm.com",
+      "status": "available"
+    },
+    {
+      "name": "us-east",
+      "href": "https://us-south.iaas.cloud.ibm.com/v1/regions/us-east",
+      "endpoint": "https://us-east.iaas.cloud.ibm.com",
+      "status": "available"
+    },
+    {
+      "name": "us-south",
+      "href": "https://us-south.iaas.cloud.ibm.com/v1/regions/us-south",
+      "endpoint": "https://us-south.iaas.cloud.ibm.com",
+      "status": "available"
+    }
+  ]
+}
+```
+
+The following API example shows how to use a single IBM Cloud Object Storage bucket. Make sure the image name is unique and the same value across all regions. Record the image ID that's returned for each image. 
 
 **Tip**: Images are regional, so a different image ID is used for each region.
 
@@ -80,58 +132,6 @@ curl -k -sS -X GET "<region endpoint>/v1/images/<image id>?generation=2&limit=10
   "visibility": "private",
   "encryption": "none",
   "status_reasons": []
-}
-```
-
-The region endpoint can be derived by using the /regions API as shown in the following example:
-
-```
-curl -k -sS -X GET "<region endpoint>/v1/regions?generation=2&version=2021-02-26" -H "Authorization: Bearer <IAM token>"  | jq .
-{
-  "regions": [
-    {
-      "name": "au-syd",
-      "href": "https://us-south.iaas.cloud.ibm.com/v1/regions/au-syd",
-      "endpoint": "https://au-syd.iaas.cloud.ibm.com",
-      "status": "available"
-    },
-    {
-      "name": "eu-de",
-      "href": "https://us-south.iaas.cloud.ibm.com/v1/regions/eu-de",
-      "endpoint": "https://eu-de.iaas.cloud.ibm.com",
-      "status": "available"
-    },
-    {
-      "name": "eu-gb",
-      "href": "https://us-south.iaas.cloud.ibm.com/v1/regions/eu-gb",
-      "endpoint": "https://eu-gb.iaas.cloud.ibm.com",
-      "status": "available"
-    },
-    {
-      "name": "jp-osa",
-      "href": "https://us-south.iaas.cloud.ibm.com/v1/regions/jp-osa",
-      "endpoint": "https://jp-osa.iaas.cloud.ibm.com",
-      "status": "available"
-    },
-    {
-      "name": "jp-tok",
-      "href": "https://us-south.iaas.cloud.ibm.com/v1/regions/jp-tok",
-      "endpoint": "https://jp-tok.iaas.cloud.ibm.com",
-      "status": "available"
-    },
-    {
-      "name": "us-east",
-      "href": "https://us-south.iaas.cloud.ibm.com/v1/regions/us-east",
-      "endpoint": "https://us-east.iaas.cloud.ibm.com",
-      "status": "available"
-    },
-    {
-      "name": "us-south",
-      "href": "https://us-south.iaas.cloud.ibm.com/v1/regions/us-south",
-      "endpoint": "https://us-south.iaas.cloud.ibm.com",
-      "status": "available"
-    }
-  ]
 }
 ```
 
