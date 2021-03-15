@@ -154,11 +154,11 @@ For more details, see [Creating Terraform templates](https://cloud.ibm.com/docs/
 
 Use [Terraform CLI](https://www.terraform.io/docs/cli/index.html) to test your template. 
 
-# Create GIT release for artifacts and .tgz
+# Upload your Terraform template to a GitHub release
+
+See [Managing releases in a repository](https://docs.github.com/en/github/administering-a-repository/managing-releases-in-a-repository). 
 
 **Tip**: Make sure to note the URL of the `.tgz` file.
-
-For more details, see [Managing releases in a repository](https://docs.github.com/en/github/administering-a-repository/managing-releases-in-a-repository). 
 
 # Validate your Terraform template
 
