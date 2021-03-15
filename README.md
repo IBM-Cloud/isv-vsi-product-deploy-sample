@@ -70,12 +70,12 @@ curl -k -sS -X GET "https://us-south.iaas.cloud.ibm.com/v1/regions?generation=2&
 ```
 
 
-The following API example shows how to use a single IBM Cloud Object Storage bucket. Make sure the image name is unique and the same value is used across all regions. In this example the image name is **vsi-image-example**. ****Be sure to record the image ID that's returned for each image. 
+The following API example shows how to use a single IBM Cloud Object Storage bucket. Make sure the image name is unique and the same value is used across all regions. In this example the image name is `ibm-ubuntu-20-04-minimal-amd64-2`. Be sure to record the image ID that's returned for each image. 
 
 **Tip**: Because images are regional, a different image ID is used for each region.
 
 
-```curl -X POST -k -Ss "https://us-south.iaas.cloud.ibm.com/v1/images?generation=2&version=2021-02-26" -H "Authorization: Bearer <IAM token>"  -d '{ "name": "vsi-image-example", "file": {"href": "cos://us-south/my-bucket/myimage.qcow2"}, "operating_system": { "name": "centos-8-amd64"} } '  |  jq .```
+```curl -X POST -k -Ss "https://us-south.iaas.cloud.ibm.com/v1/images?generation=2&version=2021-02-26" -H "Authorization: Bearer <IAM token>"  -d '{ "name": "ibm-ubuntu-20-04-minimal-amd64-2", "file": {"href": "cos://us-south/my-bucket/myimage.qcow2"}, "operating_system": { "name": "centos-8-amd64"} } '  |  jq .```
 
 **Response**:
 ```
@@ -172,7 +172,7 @@ Create a schematics workspace and provide the github repository url (https://git
 
 | Deployment variables | Description | Example |
 | --- | ---------- | ------------- | 
-| `image_name` | The name of the image that you want your VPC virtual servers to be provisioned. | ibm-ubuntu-20-04-minimal-amd64-2 |
+| `image_name` | The name of the image that you want your VPC virtual servers to be created. | ibm-ubuntu-20-04-minimal-amd64-2 |
 | `ssh_key_name` | The name of your public SSH key to be used for VSI. See [Public SSH key](https://cloud.ibm.com/docs/vpc-on-classic-vsi?topic=vpc-on-classic-vsi-ssh-keys) for creating and managing the SSH key. | sample-ssh-key |
 | `vsi_profile` | The profile of compute CPU and memory resources to be used when creating the VSI instance. To list the available profiles, run `ibmcloud is instance-profiles`. | bx2-2x8 |
 | `vsi_instance_name` | The name of the VSI instance to be created. | sample-vsi |
