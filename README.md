@@ -1,12 +1,12 @@
 # Description
-This directory contains the sample terraform code to create a virtual server instance (VSI) image. 
+This directory contains the sample Terraform code to create a virtual server instance (VSI) image. 
 
 # Prerequisites
 
   1. Create an IBM Cloud Object Storage bucket and upload the `qcow2` image, which will be used to create a custom image in your account. For more information, see the following links:
     
-  * [Getting started with Cloud Object Storage](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage)
-  * [Images](https://cloud.ibm.com/docs/vpc?topic=vpc-about-images)
+   * [Getting started with Cloud Object Storage](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage)
+   * [Images](https://cloud.ibm.com/docs/vpc?topic=vpc-about-images)
   
   2. Create a Virtual Private Cloud (VPC) and subnet. For more information, see [Getting started with VPC](https://cloud.ibm.com/docs/vpc?topic=vpc-getting-started).  
   3. Create a [SSH key](https://cloud.ibm.com/docs/vpc?topic=vpc-ssh-keys). 
@@ -14,7 +14,7 @@ This directory contains the sample terraform code to create a virtual server ins
 
 # Import your custom image to all supported regions
 
-When you are ready to make your image publicly available, import your image to every region in which you want your solution to be available. The region endpoint can be derived by using the /regions API as shown in the following example:
+When you are ready to make your image publicly available, import it to every region in which you want your solution to be available. The region endpoint can be derived by using the /regions API as shown in the following example:
 
 ```
 curl -k -sS -X GET "<region endpoint>/v1/regions?generation=2&version=2021-02-26" -H "Authorization: Bearer <IAM token>"  | jq .
@@ -66,9 +66,9 @@ curl -k -sS -X GET "<region endpoint>/v1/regions?generation=2&version=2021-02-26
 }
 ```
 
-The following API example shows how to use a single IBM Cloud Object Storage bucket. Make sure the image name is unique and the same value across all regions. Record the image ID that's returned for each image. 
+The following API example shows how to use a single IBM Cloud Object Storage bucket. Make sure the image name is unique and the same value is used across all regions. Record the image ID that's returned for each image. 
 
-**Tip**: Images are regional, so a different image ID is used for each region.
+**Tip**: Because images are regional, a different image ID is used for each region.
 
 
 ```curl -X POST -k -Ss "<region endpoint>/v1/images?generation=2&version=2021-02-26" -H "Authorization: Bearer <IAM token>"  -d '{ "name": "myimage", "file": {"href": "cos://us-south/my-bucket/myimage.qcow2"}, "operating_system": { "name": "centos-8-amd64"} } '  |  jq .```
@@ -144,21 +144,21 @@ Before you begin, make sure that you have the following IBM Cloud Identity and A
  * Manager service access role for IBM Cloud Schematics
  * Operator platform role for VPC Infrastructure
 
-For the detailed steps, see [Creating Terraform templates](https://cloud.ibm.com/docs/schematics?topic=schematics-create-tf-config).  
+For more details, see [Creating Terraform templates](https://cloud.ibm.com/docs/schematics?topic=schematics-create-tf-config).  
 
 # Test your Terraform template
 
-Test with regular TF CLI.
+Use [Terraform CLI](https://www.terraform.io/docs/cli/index.html) to test your template. 
 
 # Create GIT release for artifacts and .tgz
 
-# Onboard to private catalog and validate
+# Validate your Terraform template
 
-For details, see https://test.cloud.ibm.com/docs/third-party?topic=third-party-sw-validate.
+The validation process includes importing a version of your Terraform template to a private catalog, configuring the installation, and then installing the template. For more details, see [Validating your software](https://test.cloud.ibm.com/docs/third-party?topic=third-party-sw-validate).
 
 # Make your image public (patch API)
 
-**Note**: You can make your image public only after you validate your Terraform template, and IBM has granted you access to run the command.
+You can make your image public only after you validate your Terraform template, and IBM has granted you access to run the command.
 
 _CB notes:_
   
