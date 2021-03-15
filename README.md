@@ -17,7 +17,7 @@ This directory contains the sample Terraform code to create a virtual server ins
 When you are ready to make your image publicly available, import it to every region in which you want your solution to be available. The region endpoint can be derived by using the /regions API as shown in the following example:
 
 ```
-curl -k -sS -X GET "<region endpoint>/v1/regions?generation=2&version=2021-02-26" -H "Authorization: Bearer <IAM token>"  | jq .
+curl -k -sS -X GET "https://us-south.iaas.cloud.ibm.com/v1/regions?generation=2&version=2021-02-26" -H "Authorization: Bearer <IAM token>"  | jq .
 {
   "regions": [
     {
@@ -64,14 +64,16 @@ curl -k -sS -X GET "<region endpoint>/v1/regions?generation=2&version=2021-02-26
     }
   ]
 }
+
+Note: you will need to acquire a bearer token before making the API call.  One way to do this is to use the command `ibmcloud iam oauth-tokens`.
 ```
 
-The following API example shows how to use a single IBM Cloud Object Storage bucket. Make sure the image name is unique and the same value is used across all regions. Record the image ID that's returned for each image. 
+The following API example shows how to use a single IBM Cloud Object Storage bucket. Make sure the image name is unique and the same value is used across all regions. In this example the image name is **vsi-image-example**. ****Be sure to record the image ID that's returned for each image. 
 
 **Tip**: Because images are regional, a different image ID is used for each region.
 
 
-```curl -X POST -k -Ss "<region endpoint>/v1/images?generation=2&version=2021-02-26" -H "Authorization: Bearer <IAM token>"  -d '{ "name": "myimage", "file": {"href": "cos://us-south/my-bucket/myimage.qcow2"}, "operating_system": { "name": "centos-8-amd64"} } '  |  jq .```
+```curl -X POST -k -Ss "https://us-south.iaas.cloud.ibm.com/v1/images?generation=2&version=2021-02-26" -H "Authorization: Bearer <IAM token>"  -d '{ "name": "vsi-image-example", "file": {"href": "cos://us-south/my-bucket/myimage.qcow2"}, "operating_system": { "name": "centos-8-amd64"} } '  |  jq .```
 
 **Response**:
 ```
@@ -106,7 +108,7 @@ The following API example shows how to use a single IBM Cloud Object Storage buc
 The image status will transition from pending to available after several minutes. To check the status, see the following example:
 
 ```
-curl -k -sS -X GET "<region endpoint>/v1/images/<image id>?generation=2&limit=100&version=2021-02-26" -H "Authorization: Bearer <IAM token>"  | jq .
+curl -k -sS -X GET "https://us-south.iaas.cloud.ibm.com/v1/images/<image id>?generation=2&limit=100&version=2021-02-26" -H "Authorization: Bearer <IAM token>"  | jq .
 {
   "id": "r134-e2a3594d-eef0-4e20-bbcb-d9ca8a2fc9fa",
   "crn": "crn:v1:staging:public:is:us-south:a/<removed>::image:r134-e2a3594d-eef0-4e20-bbcb-d9ca8a2fc9fa",
@@ -169,7 +171,7 @@ The REST API supports patching the visibility of the image to 'public'.  Note t
   
 To patch the visibility of the image:
 ```
-curl  -X PATCH "<region endpoint>/v1/images/<image id>?generation=2&version=2021-02-26"  -H "Authorization: Bearer <IAM token>" -d '{"visibility": "public"} ' | jq .
+curl  -X PATCH "https://us-south.iaas.cloud.ibm.com/v1/images/<image id>?generation=2&version=2021-02-26"  -H "Authorization: Bearer <IAM token>" -d '{"visibility": "public"} ' | jq .
 ```
 
 
