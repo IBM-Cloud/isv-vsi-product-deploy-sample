@@ -16,6 +16,8 @@ This directory contains the sample Terraform code to create a virtual server ins
 
 When you are ready to make your image publicly available, import it to every region in which you want your solution to be available. The region endpoint can be derived by using the /regions API as shown in the following example:
 
+**Note**: You will need to acquire a bearer token before making the API call. One way to do this is to use the command `ibmcloud iam oauth-tokens`.
+
 ```
 curl -k -sS -X GET "https://us-south.iaas.cloud.ibm.com/v1/regions?generation=2&version=2021-02-26" -H "Authorization: Bearer <IAM token>"  | jq .
 {
@@ -65,8 +67,8 @@ curl -k -sS -X GET "https://us-south.iaas.cloud.ibm.com/v1/regions?generation=2&
   ]
 }
 
-Note: you will need to acquire a bearer token before making the API call.  One way to do this is to use the command `ibmcloud iam oauth-tokens`.
 ```
+
 
 The following API example shows how to use a single IBM Cloud Object Storage bucket. Make sure the image name is unique and the same value is used across all regions. In this example the image name is **vsi-image-example**. ****Be sure to record the image ID that's returned for each image. 
 
@@ -154,27 +156,52 @@ Use [Terraform CLI](https://www.terraform.io/docs/cli/index.html) to test your t
 
 # Create GIT release for artifacts and .tgz
 
+**Tip**: Make sure to note the URL of the `.tgz` file.
+
+For more details, see [Managing releases in a repository](https://docs.github.com/en/github/administering-a-repository/managing-releases-in-a-repository). 
+
 # Validate your Terraform template
 
-The validation process includes importing a version of your Terraform template to a private catalog, configuring the installation, and then installing the template. For more details, see [Validating your software](https://test.cloud.ibm.com/docs/third-party?topic=third-party-sw-validate).
+The validation process includes importing your `.tgz` file that you created in the previous section to a private catalog, configuring the deployment values, and then installing the Terraform template. For more details, see [Validating your software](https://test.cloud.ibm.com/docs/third-party?topic=third-party-sw-validate).
 
-# Make your image public (patch API)
+# Make your VSI image public (patch API)
 
-You can make your image public only after you validate your Terraform template, and IBM has granted you access to run the command.
+You can make your VSI image public only after you validate your Terraform template, and IBM Cloud has granted you access to run the command. If you run into issues, you can contact us by going **Partner Center** > **My products** > **Help icon**. 
 
-_CB notes:_
-  
-  * Need to note that using the API is limited to vendor accounts that are added to the specific allowlist.
-  * Add details about how to contact the concierge team if they need help.
-
-The REST API supports patching the visibility of the image to 'public'.  Note that this will effectively make the image usable by any other IBM Cloud account, however, the image will not actually be visible to other accounts.  Your image will not be discoverable via the API.  In order to provision a VSI using the image, the image ID needs to be known.  
+The REST API supports patching the visibility of the VSI image to 'public'.  Note that this will effectively make the image usable by any other IBM Cloud account, however, the image will not actually be visible to other accounts.  Your image will not be discoverable via the API.  In order to provision a VSI using the image, the image ID needs to be known.  
   
 To patch the visibility of the image:
 ```
 curl  -X PATCH "https://us-south.iaas.cloud.ibm.com/v1/images/<image id>?generation=2&version=2021-02-26"  -H "Authorization: Bearer <IAM token>" -d '{"visibility": "public"} ' | jq .
 ```
 
+# Updating to a new version
 
+To release a new version of your VSI image, complete the following steps. 
+
+1. Import the new version as described in the previous Import your custom image to all supported regions section.
+2. Edit the `variables.tf` file by updating the image_name variable. 
+3. Create an updated GitHub release to create a new `.tgz` file, and note the new URL as previously described in the Create GIT release for artifacts and .tgz section.
+4. Validate the new version in your private catalog as previously described in the Validate your Terraform template section. 
+5. Make your VSI image public as previously described. 
+6. (Optional) To deprecate a previous version, complete the following steps:
+  
+  1. Revert the image to being private:
+
+  ```
+  curl  -X PATCH "https://us-south.iaas.cloud.ibm.com/v1/images/<image id>?generation=2&version=2021-02-26"  -H "Authorization: Bearer <IAM token>" -d '{"visibility": "private"} ' | jq .
+
+  ```
+  
+  2. Delete the image:
+  
+  ```
+  curl  -X DELETE "<region endpoint>/v1/images/<image id>?generation=2&version=2021-02-26"  -H "Authorization: Bearer <IAM token>" | jq .
+  ```
+
+  **Note**: Run the commands in each region to ensure that you deprecate the previous version in all regions.
+  
+  
 
 -------------------------------------------------- below is all from previous version -------------------
 
