@@ -199,22 +199,23 @@ To release a new version of your VSI image, complete the following steps.
 3. Create an updated GitHub release to create a new `.tgz` file, and note the new URL as previously described in the Create GIT release for artifacts and .tgz section.
 4. Validate the new version in your private catalog as previously described in the Validate your Terraform template section. 
 5. Make your VSI image public as previously described. 
-6. (Optional) To deprecate a previous version, complete the following steps:
+
+(Optional) To deprecate a previous version, complete the following steps:
   
-  1. Revert the image to being private:
+ 1. Revert the image to being private:
 
   ```
   curl  -X PATCH "https://us-south.iaas.cloud.ibm.com/v1/images/<image id>?generation=2&version=2021-02-26"  -H "Authorization: Bearer <IAM token>" -d '{"visibility": "private"} ' | jq .
 
   ```
   
-  2. Delete the image:
+ 2. Delete the image:
   
   ```
   curl  -X DELETE "<region endpoint>/v1/images/<image id>?generation=2&version=2021-02-26"  -H "Authorization: Bearer <IAM token>" | jq .
   ```
 
-  **Note**: Run the commands in each region to ensure that you deprecate the previous version in all regions.
+**Note**: Run the commands in each region to ensure that you deprecate the previous version in all regions.
   
   
 
