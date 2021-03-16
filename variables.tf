@@ -3,43 +3,43 @@
 ##############################################################################
 
 ##############################################################################
-# image_name - Name of the image to spin up VSI.
+# image_name - Name of the image to spin up the virtual server instance.
 ##############################################################################
 variable "image_name"{
   default = "ibm-ubuntu-20-04-minimal-amd64-2"
-  description = "The name of the image to spin up VSI"
+  description = "The name of the image to spin up the virtual server instance."
 }
 
 ##############################################################################
-# subnet_id - Subnet where resources are to be provisioned.
+# subnet_id - Subnet where resources are to be created.
 ##############################################################################
 variable "subnet_id"{
   default = ""
-  description = "The id of the subnet to which VSI's interface belongs to"
+  description = "The ID of the subnet to which the virtual server instance interface belongs to. Required."
 }
 
 ##############################################################################
-# ssh_key_name - The name of the public SSH key to be used when provisining VSI.
+# ssh_key_name - The name of the public SSH key used to create the virtual server instance.
 ##############################################################################
 variable "ssh_key_name" {
   default     = ""
-  description = "The name of the public SSH key to be used when provisining VSI."
+  description = "The name of the public SSH key to use when creating the virtual server instance. Required."
 }
 
 ##############################################################################
-# vsi_instance_name - The name of your Virtual Server to be provisioned
+# vsi_instance_name - The name of the virtual server instance.
 ##############################################################################
 variable "vsi_instance_name" {
   default     = "sample-vsi"
-  description = "The name of your Virtual Server to be provisioned."
+  description = "The name of the virtual server instance."
 }
 
 ##############################################################################
-# vsi_profile - The profile of compute CPU and memory resources to be used when provisioning VSI.
+# vsi_profile - The profile of compute CPU and memory resources to use when creating the virtual server instance.
 ##############################################################################
 variable "vsi_profile" {
   default     = "bx2-2x8"
-  description = "The profile of compute CPU and memory resources to be used when provisioning VSI. To list available profiles, run `ibmcloud is instance-profiles`."
+  description = "The profile of compute CPU and memory resources to use when creating the virtual server instance VSI. To list available profiles, run the `ibmcloud is instance-profiles` command."
 }
 
 variable "region" {
@@ -49,22 +49,22 @@ variable "region" {
 
 #####################################################################################################
 # api_key - This is the ibm_cloud_api_key which should be used only while testing this code from CLI. 
-# It is not needed while testing from Schematics
+# It is not needed while testing from Schematics.
 ######################################################################################################
 /*variable "api_key" {
   default     = ""
-  description = "holds the user api key"
+  description = "The user API key"
 }*/
 
 ##############################################################################
-# vsi_securtiy_group - The security group to which the VSI interface belongs to.
+# vsi_securtiy_group - The security group to which the virtual server instance interface belongs to.
 ##############################################################################
 variable "vsi_security_group" {
   default     = "sample-security-group"
-  description = "The security group for VSI"
+  description = "The security group for the virtual server instance."
 }
 
 variable "TF_VERSION" {
  default = "0.12"
- description = "terraform engine version to be used in schematics"
+ description = "The version of the Terraform engine that's used in the Schematics workspace."
 }
