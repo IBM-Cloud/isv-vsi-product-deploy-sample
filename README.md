@@ -166,7 +166,7 @@ The validation process includes importing your `.tgz` file that you created in t
 
 ## Configuring your deployment values
 
-Create a schematics workspace and provide the github repository url (https://github.com/IBM-Cloud/isv-vsi-product-deploy-sample) under settings to pull the latest code, so that you can set up your deployment variables from the `Create` page. Once the template is applied, IBM Cloud Schematics  provisions the resources based on the values that were specified for the deployment variables.
+Create a Schematics workspace and provide the [isv-vsi-product-deploy-sample repository URL](https://github.com/IBM-Cloud/isv-vsi-product-deploy-sample) in Settings to pull the latest code to set up your deployment variables from the Create page. After the template is applied, the resources are based on the values that are specified in the deployment variables. 
 
 ### Required deployment variables
 
