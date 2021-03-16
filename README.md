@@ -14,12 +14,13 @@ This directory contains the sample Terraform code to create a virtual server ins
 
 # Import your custom image to all supported regions
 
-When you are ready to make your image publicly available, import it to every region in which you want your solution to be available. The region endpoint can be derived by using the /regions API as shown in the following example:
+When you are ready to make your image publicly available, import it to every region in which you want your solution to be available. The region endpoint URL can be derived by using the /regions API as shown in the following example:
 
 **Note**: You will need to acquire a bearer token before making the API call. One way to do this is to use the command `ibmcloud iam oauth-tokens`.
 
 ```
-curl -k -sS -X GET "https://us-south.iaas.cloud.ibm.com/v1/regions?generation=2&version=2021-02-26" -H "Authorization: Bearer <IAM token>"  | jq .
+export iam_token=<your bearer token>
+curl -k -sS -X GET "https://us-south.iaas.cloud.ibm.com/v1/regions?generation=2&version=2021-02-26" -H "Authorization: Bearer $iam_token"  | jq .
 {
   "regions": [
     {
@@ -70,12 +71,15 @@ curl -k -sS -X GET "https://us-south.iaas.cloud.ibm.com/v1/regions?generation=2&
 ```
 
 
-The following API example shows how to use a single IBM Cloud Object Storage bucket. Make sure the image name is unique and the same value is used across all regions. In this example the image name is `ibm-ubuntu-20-04-minimal-amd64-2`. Be sure to record the image ID that's returned for each image. 
+The following API example shows how to use a single IBM Cloud Object Storage bucket. Make sure the image name is unique and the same value is used across all regions. In this example the image will be uploaded with the name `ibm-ubuntu-20-04-minimal-amd64-2`. Be sure to record the image ID that's returned for each image. 
 
-**Tip**: Because images are regional, a different image ID is used for each region.
+**Tip**: Because images are regional, the same image has a different image ID in each region.
 
 
-```curl -X POST -k -Ss "https://us-south.iaas.cloud.ibm.com/v1/images?generation=2&version=2021-02-26" -H "Authorization: Bearer <IAM token>"  -d '{ "name": "ibm-ubuntu-20-04-minimal-amd64-2", "file": {"href": "cos://us-south/my-bucket/myimage.qcow2"}, "operating_system": { "name": "centos-8-amd64"} } '  |  jq .```
+```
+# issue this for each region endpoint as derived from the list above.  Change the setting for api_endpoint and then issue the curl command.
+export api_endpoint="https://us-south.iaas.cloud.ibm.com"
+curl -X POST -k -Ss "$api_endpoint/v1/images?generation=2&version=2021-02-26" -H "Authorization: Bearer $iam_token"  -d '{ "name": "ibm-ubuntu-20-04-minimal-amd64-2", "file": {"href": "cos://us-south/my-bucket/myimage.qcow2"}, "operating_system": { "name": "centos-8-amd64"} } '  |  jq .```
 
 **Response**:
 ```
@@ -110,7 +114,13 @@ The following API example shows how to use a single IBM Cloud Object Storage buc
 The image status will transition from pending to available after several minutes. To check the status, see the following example:
 
 ```
-curl -k -sS -X GET "https://us-south.iaas.cloud.ibm.com/v1/images/<image id>?generation=2&limit=100&version=2021-02-26" -H "Authorization: Bearer <IAM token>"  | jq .
+# change the api_endpoint to the desired region that you wish to check status.
+export api_endpoint="https://us-south.iaas.cloud.ibm.com"
+
+# set the image_id to the image id returned above for the region (api_endpoint) you wish to check.
+export image_id=<image id returned for this region from above>
+
+curl -k -sS -X GET "$api_endpoint/v1/images/$image_id?generation=2&limit=100&version=2021-02-26" -H "Authorization: Bearer $iam_token"  | jq .
 {
   "id": "r134-e2a3594d-eef0-4e20-bbcb-d9ca8a2fc9fa",
   "crn": "crn:v1:staging:public:is:us-south:a/<removed>::image:r134-e2a3594d-eef0-4e20-bbcb-d9ca8a2fc9fa",
