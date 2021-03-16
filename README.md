@@ -152,13 +152,13 @@ For more details, see [Creating Terraform templates](https://cloud.ibm.com/docs/
 
 # Test your Terraform template
 
-Use [Terraform CLI](https://www.terraform.io/docs/cli/index.html) to test your template. 
+Use [Terraform and the IBM Cloud provider plug-in](https://cloud.ibm.com/docs/ibm-cloud-provider-for-terraform?topic=ibm-cloud-provider-for-terraform-setup_cli) to test your template. 
 
 # Upload your Terraform template to a GitHub release
 
-See [Managing releases in a repository](https://docs.github.com/en/github/administering-a-repository/managing-releases-in-a-repository). 
+Use the [latest isv-vsi-product-deploy-sample release](https://github.com/IBM-Cloud/isv-vsi-product-deploy-sample/releases/tag/v1) as an example of how to set up your release. 
 
-**Tip**: Make sure to note the URL of the `.tgz` file.
+**Tip**: Make sure to note the URL of your `.tgz` file.
 
 # Validate your Terraform template
 
