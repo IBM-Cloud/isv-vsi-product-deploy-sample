@@ -79,7 +79,8 @@ The following API example shows how to use a single IBM Cloud Object Storage buc
 ```
 # issue this for each region endpoint as derived from the list above.  Change the setting for api_endpoint and then issue the curl command.
 export api_endpoint="https://us-south.iaas.cloud.ibm.com"
-curl -X POST -k -Ss "$api_endpoint/v1/images?generation=2&version=2021-02-26" -H "Authorization: Bearer $iam_token"  -d '{ "name": "ibm-ubuntu-20-04-minimal-amd64-2", "file": {"href": "cos://us-south/my-bucket/myimage.qcow2"}, "operating_system": { "name": "centos-8-amd64"} } '  |  jq .```
+curl -X POST -k -Ss "$api_endpoint/v1/images?generation=2&version=2021-02-26" -H "Authorization: Bearer $iam_token"  -d '{ "name": "ibm-ubuntu-20-04-minimal-amd64-2", "file": {"href": "cos://us-south/my-bucket/myimage.qcow2"}, "operating_system": { "name": "centos-8-amd64"} } '  |  jq .
+```
 
 **Response**:
 ```
@@ -111,15 +112,13 @@ curl -X POST -k -Ss "$api_endpoint/v1/images?generation=2&version=2021-02-26" -H
 }
 ```
 
-The image status will transition from pending to available after several minutes. To check the status, see the following example:
+The image status will transition from pending to available after several minutes. To check the status, see the following example. 
+
+* Change the api_endpoint to the desired region that you wish to check status: `export api_endpoint="https://us-south.iaas.cloud.ibm.com"`
+
+* Set the image_id to the image ID returned above for the region (api_endpoint) you wish to check: `export image_id=<image id returned for this region from above>`
 
 ```
-# change the api_endpoint to the desired region that you wish to check status.
-export api_endpoint="https://us-south.iaas.cloud.ibm.com"
-
-# set the image_id to the image id returned above for the region (api_endpoint) you wish to check.
-export image_id=<image id returned for this region from above>
-
 curl -k -sS -X GET "$api_endpoint/v1/images/$image_id?generation=2&limit=100&version=2021-02-26" -H "Authorization: Bearer $iam_token"  | jq .
 {
   "id": "r134-e2a3594d-eef0-4e20-bbcb-d9ca8a2fc9fa",
