@@ -192,11 +192,16 @@ Create a Schematics workspace and provide the [isv-vsi-product-deploy-sample rep
 
 You can make your VSI image public only after you validate your Terraform template, and IBM Cloud has granted you access to run the command. If you run into issues, you can contact us by going **Partner Center** > **My products** > **Help icon**. 
 
-The REST API supports patching the visibility of the VSI image to 'public'.  Note that this will effectively make the image usable by any other IBM Cloud account, however, the image will not actually be visible to other accounts.  Your image will not be discoverable via the API.  In order to provision a VSI using the image, the image ID needs to be known.  
-  
+The REST API supports patching the visibility of the VSI image to `public`. You are required to run the command in every applicable region and use the image ID that's unique to each region as previously described. Note that this will effectively make the image usable by any other IBM Cloud account, however, the image will not actually be visible to other accounts.  Your image will not be discoverable via the API.  In order to provision a VSI using the image, the image ID needs to be known.  
+
 To patch the visibility of the image:
+
+* Change the api_endpoint to the desired region that you wish to check status: `export api_endpoint="https://us-south.iaas.cloud.ibm.com"`
+
+* Set the image_id to the image ID returned above for the region (api_endpoint) you wish to check: `export image_id=<image id returned for this region from above>`
+
 ```
-curl  -X PATCH "https://us-south.iaas.cloud.ibm.com/v1/images/<image id>?generation=2&version=2021-02-26"  -H "Authorization: Bearer <IAM token>" -d '{"visibility": "public"} ' | jq .
+curl  -X PATCH "$api_endpoint/v1/images/$image_id?generation=2&version=2021-02-26"  -H "Authorization: Bearer <IAM token>" -d '{"visibility": "public"} ' | jq .
 ```
 
 # Updating to a new version
