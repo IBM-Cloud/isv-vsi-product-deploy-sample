@@ -39,12 +39,12 @@ variable "vsi_instance_name" {
 ##############################################################################
 variable "vsi_profile" {
   default     = "bx2-2x8"
-  description = "The profile of compute CPU and memory resources to use when creating the virtual server instance VSI. To list available profiles, run the `ibmcloud is instance-profiles` command."
+  description = "The profile of compute CPU and memory resources to use when creating the virtual server instance. To list available profiles, run the `ibmcloud is instance-profiles` command."
 }
 
 variable "region" {
   default     = "us-south"
-  description = "Optional. The value of the region of VPC."
+  description = "The value of the region of VPC."
 }
 
 #####################################################################################################
@@ -53,7 +53,7 @@ variable "region" {
 ######################################################################################################
 /*variable "api_key" {
   default     = ""
-  description = "The user API key"
+  description = "The user API key."
 }*/
 
 ##############################################################################
