@@ -3,16 +3,10 @@
 #  - Ensure user provided region is valid
 #  - Ensure user provided resource_group is valid
 ##############################################################################
-
-variable "generation" {
-  default     = 2
-  description = "The VPC Generation to target. Valid values are 2 or 1."
-}
-
 provider "ibm" {
   /* Uncomment ibmcloud_api_key while testing from CLI */
   //ibmcloud_api_key      = var.api_key
-  generation            = var.generation 
+  generation            = 2 
   region                = var.region
   ibmcloud_timeout      = 300
 }
