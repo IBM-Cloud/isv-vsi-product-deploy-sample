@@ -1,5 +1,5 @@
 # Description
-This directory contains the sample Terraform code to create a virtual server instance (VSI) image. 
+This directory contains the sample Terraform code to create a virtual server instance image. 
 
 # Prerequisites
 
