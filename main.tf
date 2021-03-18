@@ -84,7 +84,7 @@ resource "ibm_is_security_group_rule" "vsi_sg_rule_out_all" {
 }
  
 //image with below name should be present in all regions in IBM Cloud
-data "ibm_is_image" "ubuntu_image" {
+data "ibm_is_image" "my_image" {
   name = var.image_name
 }  
   
@@ -92,7 +92,7 @@ data "ibm_is_image" "ubuntu_image" {
 resource "ibm_is_instance" "sample_vsi" {
   depends_on = [ibm_is_security_group_rule.vsi_sg_rule_out_all]
   name           = var.vsi_instance_name
-  image          = data.ibm_is_image.ubuntu_image.id
+  image          = data.ibm_is_image.my_image.id
   profile        = data.ibm_is_instance_profile.vsi_profile.name
   resource_group = data.ibm_is_subnet.vsi_subnet.resource_group
 
