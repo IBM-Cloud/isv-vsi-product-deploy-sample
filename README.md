@@ -191,7 +191,7 @@ To patch the visibility of the image:
 3. Run the following command:
 
 ```
-curl  -X PATCH "$api_endpoint/v1/images/$image_id?generation=2&version=2021-02-26"  -H "Authorization: Bearer <IAM token>" -d '{"visibility": "public"} ' | jq .
+curl  -X PATCH "$api_endpoint/v1/images/$image_id?generation=2&version=2021-02-26"  -H "Authorization: Bearer $iam_token" -d '{"visibility": "public"} ' | jq .
 ```
 
 # Update to a new version
@@ -209,14 +209,14 @@ To release a new version of your image, complete the following steps:
  1. Revert the image to being private:
 
   ```
-  curl  -X PATCH "https://us-south.iaas.cloud.ibm.com/v1/images/<image id>?generation=2&version=2021-02-26"  -H "Authorization: Bearer <IAM token>" -d '{"visibility": "private"} ' | jq .
+  curl  -X PATCH "$api_endpoint/v1/images/$image_id?generation=2&version=2021-02-26"  -H "Authorization: Bearer $iam_token" -d '{"visibility": "private"} ' | jq .
 
   ```
   
  2. Delete the image:
   
   ```
-  curl  -X DELETE "<region endpoint>/v1/images/<image id>?generation=2&version=2021-02-26"  -H "Authorization: Bearer <IAM token>" | jq .
+  curl  -X DELETE "$api_endpoint/v1/images/$image_id?generation=2&version=2021-02-26"  -H "Authorization: Bearer $iam_token" | jq .
   ```
 
 **Note**: Run the commands in each region to ensure that you deprecate the previous version in all regions.
