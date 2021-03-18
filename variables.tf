@@ -7,7 +7,7 @@
 ##############################################################################
 variable "image_name"{
   default = "ibm-ubuntu-20-04-minimal-amd64-2"
-  description = "The name of the image to spin up the virtual server instance."
+  description = "The name of the OS image that runs the virtual server instance."
 }
 
 ##############################################################################
@@ -15,7 +15,7 @@ variable "image_name"{
 ##############################################################################
 variable "subnet_id"{
   default = ""
-  description = "The ID of the subnet to which the virtual server instance interface belongs to. Required."
+  description = "The ID of the subnet within the VPC that the virtual server instance uses. Required."
 }
 
 ##############################################################################
@@ -44,7 +44,7 @@ variable "vsi_profile" {
 
 variable "region" {
   default     = "us-south"
-  description = "The value of the region of VPC."
+  description = "The region in which the VPC instance is located."
 }
 
 #####################################################################################################
@@ -61,7 +61,7 @@ variable "region" {
 ##############################################################################
 variable "vsi_security_group" {
   default     = "sample-security-group"
-  description = "The security group for the virtual server instance."
+  description = "The name of the security group that is created."
 }
 
 variable "TF_VERSION" {
