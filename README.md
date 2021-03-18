@@ -161,7 +161,12 @@ For more details, see [Creating Terraform templates](https://cloud.ibm.com/docs/
 
 # Test your Terraform template
 
-To test your template, run the `init` and `validate` commands from the Terraform CLI. For more information, see [Terraform and the IBM Cloud provider plug-in](https://cloud.ibm.com/docs/ibm-cloud-provider-for-terraform?topic=ibm-cloud-provider-for-terraform-setup_cli).
+To test your template, run the following commands from the Terraform CLI: 
+
+* `terraform init`
+* `terraform validate`
+
+For more information, see [Terraform and the IBM Cloud provider plug-in](https://cloud.ibm.com/docs/ibm-cloud-provider-for-terraform?topic=ibm-cloud-provider-for-terraform-setup_cli).
 
 # Upload your Terraform template to a GitHub release
 
