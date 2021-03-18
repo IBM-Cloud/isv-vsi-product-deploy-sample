@@ -178,7 +178,7 @@ Use the [latest isv-vsi-product-deploy-sample release](https://github.com/IBM-Cl
 
 The onboarding process includes importing your `.tgz` file that you created in the previous section to a private catalog, configuring the deployment variables, and then validating the Terraform template. For more details, see [Validating your software](https://test.cloud.ibm.com/docs/third-party?topic=third-party-sw-validate).
 
-# Make your VSI image public (patch API)
+# Update the visibility of your image (patch API)
 
 You can make your VSI image public only after you validate your Terraform template, and IBM Cloud has granted you access to run the command. If you run into issues, you can contact us by going **Partner Center** > **My products** > **Help icon**. 
 
