@@ -71,7 +71,7 @@ curl -k -sS -X GET "https://us-south.iaas.cloud.ibm.com/v1/regions?generation=2&
 ```
 
 
-The following API example shows how to use a single IBM Cloud Object Storage bucket. Make sure the image name is unique and the same value is used across all regions. In this example the image will be uploaded with the name `ibm-ubuntu-20-04-minimal-amd64-2`. Be sure to record the image ID that's returned for each image. 
+The following API example shows how to use a single IBM Cloud Object Storage bucket. Make sure the image name is unique and the same value is used across all regions. In this example the image is uploaded with the name `ibm-ubuntu-20-04-minimal-amd64-2`. Be sure to record the image ID that's returned for each image. 
 
 **Tip**: Because images are regional, the same image has a different image ID in each region.
 
@@ -112,11 +112,11 @@ curl -X POST -k -Ss "$api_endpoint/v1/images?generation=2&version=2021-02-26" -H
 }
 ```
 
-The image status will transition from pending to available after several minutes. To check the status, see the following example. 
+The image status will transition from pending to available after several minutes. To check the status: 
 
-* Change the api_endpoint to the desired region that you wish to check status: `export api_endpoint="https://us-south.iaas.cloud.ibm.com"`
-
-* Set the image_id to the image ID returned above for the region (api_endpoint) you wish to check: `export image_id=<image id returned for this region from above>`
+1. Change the API endpoint to the desired region: `export api_endpoint="https://us-south.iaas.cloud.ibm.com"`
+2. Set the image ID to the value that is returned in the preceding example for the region (`api_endpoint`) that you want to check: `export image_id=<image id returned for this region>`
+3. Run the following command:
 
 ```
 curl -k -sS -X GET "$api_endpoint/v1/images/$image_id?generation=2&limit=100&version=2021-02-26" -H "Authorization: Bearer $iam_token"  | jq .
@@ -169,24 +169,9 @@ Use the [latest isv-vsi-product-deploy-sample release](https://github.com/IBM-Cl
 
 **Tip**: Make sure to note the URL of your `.tgz` file.
 
-# Validate your Terraform template
+# Onboard your Terraform template to the IBM Cloud catalog
 
-The validation process includes importing your `.tgz` file that you created in the previous section to a private catalog, configuring the deployment variables, and then installing the Terraform template. For more details, see [Validating your software](https://test.cloud.ibm.com/docs/third-party?topic=third-party-sw-validate).
-
-## Configuring your deployment values
-
-Create a Schematics workspace and provide the [isv-vsi-product-deploy-sample repository URL](https://github.com/IBM-Cloud/isv-vsi-product-deploy-sample) in Settings to pull the latest code to set up your deployment variables from the Create page. After the template is applied, the resources are based on the values that are specified in the deployment variables. 
-
-### Required deployment variables
-
-| Deployment variables | Description | Example |
-| --- | ---------- | ------------- | 
-| `image_name` | The name of the image that you want your VPC virtual servers to be created. | ibm-ubuntu-20-04-minimal-amd64-2 |
-| `ssh_key_name` | The name of your public SSH key to be used for VSI. See [Public SSH key](https://cloud.ibm.com/docs/vpc-on-classic-vsi?topic=vpc-on-classic-vsi-ssh-keys) for creating and managing the SSH key. | sample-ssh-key |
-| `vsi_profile` | The profile of compute CPU and memory resources to be used when creating the VSI instance. To list the available profiles, run `ibmcloud is instance-profiles`. | bx2-2x8 |
-| `vsi_instance_name` | The name of the VSI instance to be created. | sample-vsi |
-| `subnet_id` | The ID of the subnet that's associated with first interface of the VSI instance. Click the subnet details in the VPC Subnet Listing to determine this value. | 0717-xxxxxx-xxxx-xxxxx-8fae-xxxxx |
-| `vsi_security_group` | The name of the security group to which the VSI instance's interface belongs. | sample-security-group |  
+The onboarding process includes importing your `.tgz` file that you created in the previous section to a private catalog, configuring the deployment variables, and then validating the Terraform template. For more details, see [Validating your software](https://test.cloud.ibm.com/docs/third-party?topic=third-party-sw-validate).
 
 # Make your VSI image public (patch API)
 
@@ -196,23 +181,23 @@ The REST API supports patching the visibility of the VSI image to `public`. You
 
 To patch the visibility of the image:
 
-* Change the api_endpoint to the desired region that you wish to check status: `export api_endpoint="https://us-south.iaas.cloud.ibm.com"`
-
-* Set the image_id to the image ID returned above for the region (api_endpoint) you wish to check: `export image_id=<image id returned for this region from above>`
+1. Change the API endpoint to the desired region: `export api_endpoint="https://us-south.iaas.cloud.ibm.com"`
+2. Set the image ID to the value that is returned in the preceding example for the region (`api_endpoint`) that you want to check: `export image_id=<image id returned for this region>`
+3. Run the following command:
 
 ```
 curl  -X PATCH "$api_endpoint/v1/images/$image_id?generation=2&version=2021-02-26"  -H "Authorization: Bearer <IAM token>" -d '{"visibility": "public"} ' | jq .
 ```
 
-# Updating to a new version
+# Update to a new version
 
-To release a new version of your VSI image, complete the following steps. 
+To release a new version of your image, complete the following steps: 
 
 1. Import the new version as described in the previous Import your custom image to all supported regions section.
 2. Edit the `variables.tf` file by updating the image_name variable. 
 3. Create an updated GitHub release to create a new `.tgz` file, and note the new URL as previously described in the Create GIT release for artifacts and .tgz section.
-4. Validate the new version in your private catalog as previously described in the Validate your Terraform template section. 
-5. Make your VSI image public as previously described. 
+4. Onboard the new version in your private catalog as previously described in the Onboard your Terraform template section. 
+5. Make your image public as previously described. 
 
 (Optional) To deprecate a previous version, complete the following steps:
   
