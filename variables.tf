@@ -30,7 +30,7 @@ variable "ssh_key_name" {
 # vsi_instance_name - The name of the virtual server instance.
 ##############################################################################
 variable "vsi_instance_name" {
-  default     = "sample-vsi"
+  default     = ""
   description = "The name of the virtual server instance. Required for users to specify."
 }
 
@@ -60,7 +60,7 @@ variable "region" {
 # vsi_security_group - The security group to which the virtual server instance interface belongs to.
 ##############################################################################
 variable "vsi_security_group" {
-  default     = "sample-security-group"
+  default     = ""
   description = "The name of the security group that is created. Required for users to specify."
 }
 
