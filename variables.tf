@@ -3,19 +3,19 @@
 ##############################################################################
 
 ##############################################################################
-# image_name - Name of the image to spin up the virtual server instance.
+# image_name - The name of the OS image, with version specified, that runs the virtual server instance.
 ##############################################################################
 variable "image_name"{
   default = "ibm-ubuntu-20-04-minimal-amd64-2"
-  description = "The name of the OS image that runs the virtual server instance."
+  description = "The name, with version specified, of the OS image that runs the virtual server instance."
 }
 
 ##############################################################################
-# subnet_id - Subnet where resources are to be created.
+# subnet_id - The ID of the subnet that the virtual server instance uses.
 ##############################################################################
 variable "subnet_id"{
   default = ""
-  description = "The ID of the subnet within the VPC that the virtual server instance uses. Required."
+  description = "The ID of the subnet within the VPC that the virtual server instance uses. Required for users to specify."
 }
 
 ##############################################################################
@@ -23,7 +23,7 @@ variable "subnet_id"{
 ##############################################################################
 variable "ssh_key_name" {
   default     = ""
-  description = "The name of the public SSH key to use when creating the virtual server instance. Required."
+  description = "The name of the public SSH key to use when creating the virtual server instance. Required for users to specify."
 }
 
 ##############################################################################
@@ -31,7 +31,7 @@ variable "ssh_key_name" {
 ##############################################################################
 variable "vsi_instance_name" {
   default     = "sample-vsi"
-  description = "The name of the virtual server instance."
+  description = "The name of the virtual server instance. Required for users to specify."
 }
 
 ##############################################################################
@@ -43,12 +43,12 @@ variable "vsi_profile" {
 }
 
 variable "region" {
-  default     = "us-south"
-  description = "The region in which the VPC instance is located."
+  default     = ""
+  description = "The region in which the VPC instance is located. Required for users to specify."
 }
 
 #####################################################################################################
-# api_key - This is the ibm_cloud_api_key which should be used only while testing this code from CLI. 
+# api_key - The ibm_cloud_api_key which should be used only while testing this code from CLI. 
 # It is not needed while testing from Schematics.
 ######################################################################################################
 /*variable "api_key" {
@@ -57,11 +57,11 @@ variable "region" {
 }*/
 
 ##############################################################################
-# vsi_securtiy_group - The security group to which the virtual server instance interface belongs to.
+# vsi_security_group - The security group to which the virtual server instance interface belongs to.
 ##############################################################################
 variable "vsi_security_group" {
   default     = "sample-security-group"
-  description = "The name of the security group that is created."
+  description = "The name of the security group that is created. Required for users to specify."
 }
 
 variable "TF_VERSION" {
