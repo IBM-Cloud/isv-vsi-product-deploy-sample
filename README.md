@@ -176,7 +176,7 @@ Use the [latest isv-vsi-product-deploy-sample release](https://github.com/IBM-Cl
 
 # Onboard your Terraform template to the IBM Cloud catalog
 
-The onboarding process includes importing your `.tgz` file that you created in the previous section to a private catalog, configuring the deployment variables, and then validating the Terraform template. For more details, see [Onboarding a virtual server image](https://cloud.ibm.com/docs/third-party?topic=third-party-vsimage-onboard).
+The onboarding process includes importing your `.tgz` file that you created in the previous section to a private catalog, configuring the deployment values, and then validating the Terraform template. For more details, see [Onboarding a virtual server image](https://cloud.ibm.com/docs/third-party?topic=third-party-vsimage-onboard).
 
 # Update the visibility of your image (patch API)
 
@@ -194,9 +194,9 @@ To update the visibility of the image, complete the following steps:
 curl  -X PATCH "$api_endpoint/v1/images/$image_id?generation=2&version=2021-02-26"  -H "Authorization: Bearer $iam_token" -d '{"visibility": "public"} ' | jq .
 ```
 
-# Update to a new version
+# Publishing a new version
 
-To release a new version of your image, complete the following steps: 
+To publish a new version of your image, complete the following steps: 
 
 1. Import the new version as described in the previous Import your custom image to all supported regions section.
 2. Edit the `variables.tf` file by updating the image_name variable. 
