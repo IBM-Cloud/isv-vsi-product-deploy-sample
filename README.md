@@ -176,18 +176,18 @@ Use the [latest isv-vsi-product-deploy-sample release](https://github.com/IBM-Cl
 
 # Onboard your Terraform template to the IBM Cloud catalog
 
-The onboarding process includes importing your `.tgz` file that you created in the previous section to a private catalog, configuring the deployment variables, and then validating the Terraform template. For more details, see [Validating your software](https://test.cloud.ibm.com/docs/third-party?topic=third-party-sw-validate).
+The onboarding process includes importing your `.tgz` file that you created in the previous section to a private catalog, configuring the deployment variables, and then validating the Terraform template. For more details, see [Onboarding a virtual server image](https://cloud.ibm.com/docs/third-party?topic=third-party-vsimage-onboard).
 
 # Update the visibility of your image (patch API)
 
-You can make your VSI image public only after you validate your Terraform template, and IBM Cloud has granted you access to run the command. If you run into issues, you can contact us by going **Partner Center** > **My products** > **Help icon**. 
+You can make your virtual server image public only after you validate your Terraform template, and IBM Cloud has granted you access to the REST API you use to update the image visibility. If you run into issues, you can contact us by going **Partner Center** > **My products** > **Help icon**. 
 
-The REST API supports patching the visibility of the VSI image to `public`. You are required to run the command in every applicable region and use the image ID that's unique to each region as previously described. Note that this will effectively make the image usable by any other IBM Cloud account, however, the image will not actually be visible to other accounts.  Your image will not be discoverable via the API.  In order to provision a VSI using the image, the image ID needs to be known.  
+The REST API supports patching the visibility of the virtual server image to `public`. You are required to run the command in every applicable region and use the image ID that's unique to each region as previously described. Note that this effectively makes the image usable by any other IBM Cloud account, however, the image is not actually visible to other accounts. Your image is not discoverable by way of the API. To create a virtual server instance by using the image, the image ID needs to be known.  
 
-To patch the visibility of the image:
+To update the visibility of the image, complete the following steps:
 
-1. Change the API endpoint to the desired region: `export api_endpoint="https://us-south.iaas.cloud.ibm.com"`
-2. Set the image ID to the value that is returned in the preceding example for the region (`api_endpoint`) that you want to check: `export image_id=<image id returned for this region>`
+1. Change the API endpoint to the desired region: `export api_endpoint="https://us-south.iaas.cloud.ibm.com"`.
+2. Set the image ID to the value that is returned in the preceding example for the region (`api_endpoint`) that you want to check: `export image_id=<image id returned for this region>`.
 3. Run the following command:
 
 ```
