@@ -3,14 +3,6 @@
 ##############################################################################
 
 ##############################################################################
-# image_name - The name of the OS image, with version specified, that runs the virtual server instance.
-##############################################################################
-variable "image_name"{
-  default = "ibm-ubuntu-16-04-5-minimal-amd64-1"
-  description = "The name, with version specified, of the OS image that runs the virtual server instance."
-}
-
-##############################################################################
 # subnet_id - The ID of the subnet that the virtual server instance uses.
 ##############################################################################
 variable "subnet_id"{
