@@ -83,11 +83,6 @@ resource "ibm_is_security_group_rule" "vsi_sg_rule_out_all" {
   remote    = "0.0.0.0/0"
 }
  
-//image with below name should be present in all regions in IBM Cloud
-data "ibm_is_image" "my_image" {
-  name = var.image_name
-}  
-  
 //vsi instance 
 resource "ibm_is_instance" "sample_vsi" {
   depends_on = [ibm_is_security_group_rule.vsi_sg_rule_out_all]
