@@ -182,6 +182,8 @@ The onboarding process includes importing your `.tgz` file that you created in t
 
 You can make your virtual server image public only after you validate your Terraform template, and IBM Cloud has granted you access to the REST API you use to update the image visibility. If you run into issues, you can contact us by going **Partner Center** > **My products** > **Help icon**. 
 
+**Important**: The ability to patch the visibility of an image is beta functionality and is subject to change. 
+
 The REST API supports patching the visibility of the virtual server image to `public`. You are required to run the command in every applicable region and use the image ID that's unique to each region as previously described. Note that this effectively makes the image usable by any other IBM Cloud account, however, the image is not actually visible to other accounts. Your image is not discoverable by way of the API. To create a virtual server instance by using the image, the image ID needs to be known.  
 
 To update the visibility of the image, complete the following steps:
