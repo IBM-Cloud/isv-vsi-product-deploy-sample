@@ -169,7 +169,7 @@ For more information, see [Terraform and the IBM Cloud provider plug-in](https:/
 
 # Upload your Terraform template to a GitHub release
 
-Use the [latest isv-vsi-product-deploy-sample release](https://github.com/IBM-Cloud/isv-vsi-product-deploy-sample/releases/tag/v1) as an example of how to set up your release. 
+Use the [latest isv-vsi-product-deploy-sample release](https://github.com/IBM-Cloud/isv-vsi-product-deploy-sample/releases) as an example of how to set up your release. 
 
 **Tip**: Make sure to note the URL of your `.tgz` file.
 
