@@ -73,7 +73,7 @@ curl -k -sS -X GET "https://us-south.iaas.cloud.ibm.com/v1/regions?generation=2&
 
 The following API example shows how to use a single IBM Cloud Object Storage bucket. 
 
-The image name is unique and they are regional, the same image has a different image ID in each region. In this example, the various image ID corresponding to each region for image name `ubuntu-18-04-1-minimal-amd64-2` is specified in `image-map.tf` file. When a user inputs the region where he wants to provision the Virtual Server Instance, the corresponding image ID for that region is fetched. The image IDs mentioned in `image-map.tf` are for Production cloud. 
+The image name is unique and they are regional, the same image has a different image ID in each region. In this example, the various image ID corresponding to each region for image name `ubuntu-20-04-minimal-amd64-2` is specified in `image-map.tf` file. When a user inputs the region where he wants to provision the Virtual Server Instance, the corresponding image ID for that region is fetched. The image IDs mentioned in `image-map.tf` are for Production cloud. 
 
 ```
 # issue this for each region endpoint as derived from the list above.  Change the setting for api_endpoint and then issue the curl command.
