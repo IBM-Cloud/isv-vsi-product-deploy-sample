@@ -73,12 +73,12 @@ curl -k -sS -X GET "https://us-south.iaas.cloud.ibm.com/v1/regions?generation=2&
 
 The following API example shows how to use a single IBM Cloud Object Storage bucket. 
 
-The image name is unique and they are regional, the same image has a different image ID in each region. In this example, the various image IDs corresponding to each region for image name `ubuntu-18-04-1-minimal-amd64-2` are specified in `image-map.tf` file. When a user specifies the region in which to create the virtual server instance, the corresponding image ID for that region is fetched. The image IDs that are mentioned in the `image-map.tf` are for the public cloud. 
+The image name is unique and they are regional, the same image has a different image ID in each region. In this example, the various image IDs corresponding to each region for image name `ubuntu-20-04-minimal-amd64-2` are specified in `image-map.tf` file. When a user specifies the region in which to create the virtual server instance, the corresponding image ID for that region is fetched. The image IDs that are mentioned in the `image-map.tf` are for the public cloud. 
 
 ```
 # issue this for each region endpoint as derived from the preceding list. Update the setting for api_endpoint and then issue the curl command.
 export api_endpoint="https://us-south.iaas.cloud.ibm.com"
-curl -X POST -k -Ss "$api_endpoint/v1/images?generation=2&version=2021-02-26" -H "Authorization: Bearer $iam_token"  -d '{ "name": "ibm-ubuntu-18-04-1-minimal-amd64-2", "file": {"href": "cos://us-south/my-bucket/myimage.qcow2"}, "operating_system": { "name": "centos-8-amd64"} } '  |  jq .
+curl -X POST -k -Ss "$api_endpoint/v1/images?generation=2&version=2021-02-26" -H "Authorization: Bearer $iam_token"  -d '{ "name": "ibm-ubuntu-20-04-minimal-amd64-2", "file": {"href": "cos://us-south/my-bucket/myimage.qcow2"}, "operating_system": { "name": "centos-8-amd64"} } '  |  jq .
 ```
 
 **Response**:
