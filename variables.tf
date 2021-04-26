@@ -5,8 +5,8 @@
 ##############################################################################
 # subnet_id - The ID of the subnet that the virtual server instance uses.
 ##############################################################################
-variable "subnet_id"{
-  default = ""
+variable "subnet_id" {
+  default     = ""
   description = "The ID of the subnet within the VPC that the virtual server instance uses. Required for users to specify."
 }
 
@@ -57,6 +57,11 @@ variable "vsi_security_group" {
 }
 
 variable "TF_VERSION" {
- default = "0.12"
- description = "The version of the Terraform engine that's used in the Schematics workspace."
+  default     = "0.12"
+  description = "The version of the Terraform engine that's used in the Schematics workspace."
+}
+
+variable "security_group_rules" {
+  default     = []
+  description = "Security Group rules"
 }
