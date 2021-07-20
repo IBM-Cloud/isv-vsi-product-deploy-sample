@@ -173,6 +173,10 @@ Use the [latest isv-vsi-product-deploy-sample release](https://github.com/IBM-Cl
 
 **Tip**: Make sure to note the URL of your `.tgz` file.
 
+## Create your installation readme file
+
+Create a readme file that focuses on helping users get up and running with your software. The details of your readme file are published on the Readme tab of your product's details page in the IBM Cloud catalog. For more information, including a link to the readme file template that you use, see [Uploading your readme file](https://cloud.ibm.com/docs/third-party?topic=third-party-source-repo-setup#upload-readme). 
+
 # Onboard your Terraform template to the IBM Cloud catalog
 
 The onboarding process includes importing your `.tgz` file that you created in the previous section to a private catalog, configuring the deployment values, and then validating the Terraform template. For more details, see [Onboarding a virtual server image](https://cloud.ibm.com/docs/third-party?topic=third-party-vsimage-onboard).
