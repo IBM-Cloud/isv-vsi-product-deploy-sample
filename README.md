@@ -20,7 +20,7 @@ When you are ready to make your image publicly available, import it to every reg
 
 ```
 export iam_token=<your bearer token>
-curl -k -sS -X GET "https://us-south.iaas.cloud.ibm.com/v1/regions?generation=2&version=2021-02-26" -H "Authorization: Bearer $iam_token"  | jq .
+curl -k -sS -X GET "https://us-south.iaas.cloud.ibm.com/v1/regions?generation=2&version=2021-02-26" -H "Authorization: Bearer $iam_token" | jq .
 {
   "regions": [
     {
@@ -78,7 +78,7 @@ The image name is unique and they are regional, the same image has a different i
 ```
 # issue this for each region endpoint as derived from the preceding list. Update the setting for api_endpoint and then issue the curl command.
 export api_endpoint="https://us-south.iaas.cloud.ibm.com"
-curl -X POST -k -Ss "$api_endpoint/v1/images?generation=2&version=2021-02-26" -H "Authorization: Bearer $iam_token"  -d '{ "name": "ibm-ubuntu-20-04-minimal-amd64-2", "file": {"href": "cos://us-south/my-bucket/myimage.qcow2"}, "operating_system": { "name": "centos-8-amd64"} } '  |  jq .
+curl -X POST -k -Ss "$api_endpoint/v1/images?generation=2&version=2021-02-26" -H "Authorization: Bearer $iam_token" -d '{ "name": "ibm-ubuntu-20-04-minimal-amd64-2", "file": {"href": "cos://us-south/my-bucket/myimage.qcow2"}, "operating_system": { "name": "centos-8-amd64"} } ' | jq .
 ```
 
 **Response**:
@@ -118,7 +118,7 @@ The image status will transition from pending to available after several minutes
 3. Run the following command:
 
 ```
-curl -k -sS -X GET "$api_endpoint/v1/images/$image_id?generation=2&limit=100&version=2021-02-26" -H "Authorization: Bearer $iam_token"  | jq .
+curl -k -sS -X GET "$api_endpoint/v1/images/$image_id?generation=2&limit=100&version=2021-02-26" -H "Authorization: Bearer $iam_token" | jq .
 {
   "id": "r134-e2a3594d-eef0-4e20-bbcb-d9ca8a2fc9fa",
   "crn": "crn:v1:staging:public:is:us-south:a/<removed>::image:r134-e2a3594d-eef0-4e20-bbcb-d9ca8a2fc9fa",
@@ -192,7 +192,7 @@ To update the visibility of the image, complete the following steps:
 3. Run the following command:
 
 ```
-curl  -X PATCH "$api_endpoint/v1/images/$image_id?generation=2&version=2021-02-26"  -H "Authorization: Bearer $iam_token" -d '{"visibility": "public"} ' | jq .
+curl -X PATCH "$api_endpoint/v1/images/$image_id?generation=2&version=2021-02-26" -H "Authorization: Bearer $iam_token" -d '{"visibility": "public"} ' | jq .
 ```
 
 # Publishing a new version
@@ -210,14 +210,14 @@ To publish a new version of your image, complete the following steps:
  1. Revert the image to being private:
 
   ```
-  curl  -X PATCH "$api_endpoint/v1/images/$image_id?generation=2&version=2021-02-26"  -H "Authorization: Bearer $iam_token" -d '{"visibility": "private"} ' | jq .
+  curl -X PATCH "$api_endpoint/v1/images/$image_id?generation=2&version=2021-02-26" -H "Authorization: Bearer $iam_token" -d '{"visibility": "private"} ' | jq .
 
   ```
   
  2. Delete the image:
   
   ```
-  curl  -X DELETE "$api_endpoint/v1/images/$image_id?generation=2&version=2021-02-26"  -H "Authorization: Bearer $iam_token" | jq .
+  curl -X DELETE "$api_endpoint/v1/images/$image_id?generation=2&version=2021-02-26" -H "Authorization: Bearer $iam_token" | jq .
   ```
 
 **Note**: Run the commands in each region to ensure that you deprecate the previous version in all regions.
